@@ -1,475 +1,1092 @@
-const logoSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420"><defs><radialGradient id="g" cx="50%" cy="45%" r="60%"><stop offset="0%" stop-color="%230ea5e9" stop-opacity="0.35"/><stop offset="100%" stop-color="%23020517" stop-opacity="0"/></radialGradient><linearGradient id="ring" x1="0" x2="1"><stop offset="0%" stop-color="%2360a5fa"/><stop offset="100%" stop-color="%2393c5fd"/></linearGradient><linearGradient id="face" x1="0" x2="1"><stop offset="0%" stop-color="%230ea5e9"/><stop offset="100%" stop-color="%2338bdf8"/></linearGradient></defs><rect width="420" height="420" rx="60" fill="%23060f23"/><circle cx="210" cy="170" r="150" fill="url(%23g)"/><path d="M210 55c70 0 128 47 145 111-5 73-59 130-130 140l-39 37c-6 6-16 0-13-8l11-31C118 292 72 236 72 170 72 106 134 55 210 55Z" fill="none" stroke="url(%23ring)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/><rect x="140" y="115" width="140" height="100" rx="36" fill="%23dbeafe" stroke="%230b2559" stroke-width="10"/><rect x="160" y="132" width="100" height="52" rx="18" fill="%23082548"/><circle cx="190" cy="158" r="12" fill="%2393c5fd"/><circle cx="230" cy="158" r="12" fill="%2393c5fd"/><path d="M190 193c10 9 30 9 40 0" fill="none" stroke="%23082548" stroke-width="8" stroke-linecap="round"/><path d="M210 98V70" stroke="%230b2559" stroke-width="10" stroke-linecap="round"/><circle cx="210" cy="54" r="14" fill="url(%23face)" stroke="%230b2559" stroke-width="8"/><path d="M140 148h-18M280 148h18" stroke="%230b2559" stroke-width="10" stroke-linecap="round"/></svg>`;
+* {
+  box-sizing: border-box;
+}
 
-const industries = [
-  "Transportation",
-  "Dental",
-  "Real Estate",
-  "Restaurants",
-  "E-commerce",
-  "Law Firms",
-  "Gyms",
-  "Home Services"
-];
+html {
+  scroll-behavior: smooth;
+}
 
-const services = {
-  en: [
-    {
-      title: "Chatbot Customer Support",
-      desc: "Answer common customer questions instantly and reduce repetitive calls, texts, and emails."
-    },
-    {
-      title: "FAQ Automation",
-      desc: "Train your bot on your website, services, policies, and business information."
-    },
-    {
-      title: "Lead Capture",
-      desc: "Guide visitors toward calling, booking, requesting a quote, or sending an inquiry."
-    },
-    {
-      title: "Website Integration",
-      desc: "We customize and deploy the chatbot on your website with a branded, professional look."
-    }
-  ],
-  es: [
-    {
-      title: "Atención al Cliente con Chatbot",
-      desc: "Responde preguntas comunes al instante y reduce llamadas, mensajes y correos repetitivos."
-    },
-    {
-      title: "Automatización de FAQ",
-      desc: "Entrena tu bot con tu sitio web, servicios, políticas e información del negocio."
-    },
-    {
-      title: "Captura de Prospectos",
-      desc: "Guía a los visitantes para llamar, reservar, solicitar una cotización o enviar una consulta."
-    },
-    {
-      title: "Integración en Sitio Web",
-      desc: "Personalizamos e instalamos el chatbot en tu sitio con una imagen profesional."
-    }
-  ]
-};
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #020617;
+  color: #ffffff;
+  overflow-x: hidden;
+}
 
-const processData = {
-  en: [
-    {
-      step: "STEP 01",
-      title: "We study your business",
-      desc: "We train the chatbot using your website, FAQs, services, and company information."
-    },
-    {
-      step: "STEP 02",
-      title: "We customize your bot",
-      desc: "We set the tone, branding, welcome message, and customer flow for your business."
-    },
-    {
-      step: "STEP 03",
-      title: "We launch and optimize",
-      desc: "We deploy the bot on your website and refine it as new customer questions come in."
-    }
-  ],
-  es: [
-    {
-      step: "PASO 01",
-      title: "Estudiamos tu negocio",
-      desc: "Entrenamos el chatbot usando tu sitio web, preguntas frecuentes, servicios e información de la empresa."
-    },
-    {
-      step: "PASO 02",
-      title: "Personalizamos tu bot",
-      desc: "Definimos el tono, la marca, el mensaje de bienvenida y el flujo del cliente para tu negocio."
-    },
-    {
-      step: "PASO 03",
-      title: "Lanzamos y optimizamos",
-      desc: "Instalamos el bot en tu sitio web y lo mejoramos según las nuevas preguntas de los clientes."
-    }
-  ]
-};
+body.menu-open {
+  overflow: hidden;
+}
 
-const content = {
-  en: {
-    nav: ["Services", "Languages", "Process", "Pricing", "Contact"],
-    demo: "Get a Demo",
-    badge: "Customer service, FAQ answering, and lead capture",
-    heroTitle: "Professional Chatbots That Make Your Business Look Faster, Smarter, and More Available",
-    heroText: "We build custom front-end chatbot experiences for business websites that answer customer questions, automate FAQs, and guide visitors toward calling, booking, or requesting a quote.",
-    cta1: "Start My Website",
-    cta2: "View Bilingual Layout",
-    bilingualEyebrow: "Bilingual Layout",
-    bilingualTitle: "Organized Horizontal Language Boxes",
-    bilingualText: "Your website can present English and Spanish offers in separate, clean side-by-side boxes.",
-    box1Label: "English",
-    box1Title: "Chatbots for Business Websites",
-    box1Bullets: [
-      "Answer customer questions automatically",
-      "Train the bot on your website and services",
-      "Capture leads and quote requests",
-      "Deploy a branded chat experience"
-    ],
-    box2Label: "Español",
-    box2Title: "Chatbots con IA para sitios web de negocios",
-    box2Bullets: [
-      "Responde preguntas de clientes automáticamente",
-      "Entrena el bot con tu sitio web y servicios",
-      "Captura prospectos y solicitudes de cotización",
-      "Instala una experiencia de chat con tu marca"
-    ],
-    requestDemo: "Request a Demo",
-    servicesEyebrow: "SERVICES",
-    servicesTitle: "What GlobalBotSolutions Offers",
-    servicesText: "A focused website and chatbot service designed to help local businesses answer faster, look more professional, and turn traffic into real inquiries.",
-    processEyebrow: "HOW IT WORKS",
-    processTitle: "Simple Process, Professional Result",
-    processText: "A clean workflow that gets your client-facing website and chatbot ready without making the setup feel overwhelming.",
-    industriesEyebrow: "INDUSTRIES",
-    industriesTitle: "Built for Service Businesses",
-    industriesText: "This structure can be customized for many industries that need better customer communication and faster website response times.",
-    pricingEyebrow: "PRICING",
-    pricingTitle: "Simple Pricing to Start Selling Fast",
-    pricingText: "A clear structure that helps you present setup pricing and ongoing monthly management without overcomplicating the offer.",
-    setupLabel: "ONE-TIME STARTUP FEE",
-    monthlyLabel: "MONTHLY FEE",
-    setupFeatures: [
-      "Custom chatbot setup",
-      "Website and FAQ training",
-      "Branded styling",
-      "Welcome message creation",
-      "Lead capture prompts"
-    ],
-    monthlyFeatures: [
-      "Bot updates and improvements",
-      "Content refreshes",
-      "Prompt refinements",
-      "Support and monitoring",
-      "Performance optimization"
-    ],
-    sendInquiry: "Send Inquiry",
-    contactEyebrow: "CONTACT",
-    contactTitle: "Let's Build Your Front-End Website",
-    contactText: "Use this section to collect leads from business owners who want a modern website, a branded chatbot, and a cleaner customer experience.",
-    emailLabel: "Email",
-    phoneLabel: "Phone",
-    offerLabel: "Offer",
-    offerValue: "AI chatbot website setup + monthly management",
-    businessName: "Business name",
-    yourName: "Your name",
-    emailAddress: "Email address",
-    details: "Tell us about your business and what you want the chatbot to do",
-    footer: "© 2026 GlobalBotSolutions. All rights reserved."
-  },
-  es: {
-    nav: ["Servicios", "Idiomas", "Proceso", "Precios", "Contacto"],
-    demo: "Solicitar Demo",
-    badge: "Servicio al cliente, respuestas FAQ y captura de prospectos",
-    heroTitle: "Chatbots Profesionales con IA Que Hacen Que Tu Negocio Se Vea Más Rápido, Inteligente y Disponible",
-    heroText: "Creamos experiencias de chatbot para sitios web de negocios que responden preguntas de clientes, automatizan preguntas frecuentes y guían a los visitantes a llamar, reservar o solicitar una cotización.",
-    cta1: "Crear Mi Sitio Web",
-    cta2: "Ver Diseño Bilingüe",
-    bilingualEyebrow: "DISEÑO BILINGÜE",
-    bilingualTitle: "Cajas Horizontales Organizadas por Idioma",
-    bilingualText: "Tu sitio web puede presentar ofertas en inglés y español en cajas separadas y limpias.",
-    box1Label: "English",
-    box1Title: "Chatbots for Business Websites",
-    box1Bullets: [
-      "Answer customer questions automatically",
-      "Train the bot on your website and services",
-      "Capture leads and quote requests",
-      "Deploy a branded chat experience"
-    ],
-    box2Label: "Español",
-    box2Title: "Chatbots con IA para sitios web de negocios",
-    box2Bullets: [
-      "Responde preguntas de clientes automáticamente",
-      "Entrena el bot con tu sitio web y servicios",
-      "Captura prospectos y solicitudes de cotización",
-      "Instala una experiencia de chat con tu marca"
-    ],
-    requestDemo: "Solicitar Demo",
-    servicesEyebrow: "SERVICIOS",
-    servicesTitle: "Lo Que Ofrece GlobalBotSolutions",
-    servicesText: "Un servicio enfocado para ayudar a negocios locales a responder más rápido, verse más profesionales y convertir tráfico en consultas reales.",
-    processEyebrow: "CÓMO FUNCIONA",
-    processTitle: "Proceso Simple, Resultado Profesional",
-    processText: "Un flujo limpio que deja listo tu sitio web y chatbot sin que la configuración se sienta complicada.",
-    industriesEyebrow: "INDUSTRIAS",
-    industriesTitle: "Diseñado para Negocios de Servicios",
-    industriesText: "Esta estructura puede personalizarse para muchas industrias que necesitan mejor comunicación con clientes y respuesta más rápida en su sitio web.",
-    pricingEyebrow: "PRECIOS",
-    pricingTitle: "Precios Simples para Empezar a Vender Rápido",
-    pricingText: "Una estructura clara para presentar el costo inicial y la gestión mensual sin complicar demasiado la oferta.",
-    setupLabel: "CARGO INICIAL ÚNICO",
-    monthlyLabel: "CARGO MENSUAL",
-    setupFeatures: [
-      "Configuración personalizada del chatbot",
-      "Entrenamiento con sitio web y FAQ",
-      "Estilo con marca",
-      "Mensaje de bienvenida",
-      "Prompts para captar prospectos"
-    ],
-    monthlyFeatures: [
-      "Actualizaciones y mejoras",
-      "Refrescos de contenido",
-      "Refinamiento de prompts",
-      "Soporte y monitoreo",
-      "Optimización de rendimiento"
-    ],
-    sendInquiry: "Enviar Consulta",
-    contactEyebrow: "CONTACTO",
-    contactTitle: "Construyamos Tu Sitio Web Front-End",
-    contactText: "Usa esta sección para captar dueños de negocios que quieren un sitio web moderno, un chatbot con marca y una mejor experiencia para el cliente.",
-    emailLabel: "Correo",
-    phoneLabel: "Teléfono",
-    offerLabel: "Oferta",
-    offerValue: "Configuración de sitio web con chatbot + gestión mensual",
-    businessName: "Nombre del negocio",
-    yourName: "Tu nombre",
-    emailAddress: "Correo electrónico",
-    details: "Cuéntanos sobre tu negocio y lo que quieres que haga el chatbot",
-    footer: "© 2026 GlobalBotSolutions. Todos los derechos reservados."
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.page-bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(14, 165, 233, 0.18), transparent 35%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.site-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+/* HEADER */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(2, 6, 23, 0.82);
+  backdrop-filter: blur(14px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.brand-subtitle {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+.main-nav a,
+.footer-links a {
+  position: relative;
+}
+
+.main-nav a::after,
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #38bdf8;
+  transition: width 0.25s ease;
+}
+
+.main-nav a:hover,
+.footer-links a:hover,
+.mobile-link:hover {
+  color: #7dd3fc;
+}
+
+.main-nav a:hover::after,
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lang-switch {
+  display: flex;
+  padding: 4px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lang-btn {
+  border: none;
+  background: transparent;
+  color: #cbd5e1;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.lang-btn.active {
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+.header-demo-btn {
+  display: inline-block;
+}
+
+/* MOBILE BUTTONS */
+.menu-toggle,
+.menu-close {
+  border: none;
+  cursor: pointer;
+}
+
+.menu-toggle {
+  display: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.menu-toggle span {
+  position: absolute;
+  left: 13px;
+  width: 24px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 999px;
+  transition: 0.25s ease;
+}
+
+.menu-toggle span:nth-child(1) {
+  top: 17px;
+}
+
+.menu-toggle span:nth-child(2) {
+  top: 25px;
+}
+
+.menu-toggle span:nth-child(3) {
+  top: 33px;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 25px;
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 25px;
+}
+
+.menu-close {
+  font-size: 40px;
+  line-height: 1;
+  background: transparent;
+  color: #ffffff;
+}
+
+/* MOBILE OVERLAY MENU */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.7);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mobile-menu-panel {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #020617 0%, #061126 100%);
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu.open .mobile-menu-panel {
+  transform: translateX(0);
+}
+
+.mobile-menu-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mobile-link {
+  display: block;
+  padding: 18px 18px;
+  border-radius: 18px;
+  color: #e2e8f0;
+  font-size: 20px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.mobile-link:hover {
+  transform: translateX(4px);
+  background: rgba(59, 130, 246, 0.12);
+}
+
+.mobile-menu-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mobile-lang-switch {
+  width: fit-content;
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 12px 30px rgba(14, 165, 233, 0.18);
+}
+
+.btn-small {
+  padding: 12px 20px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: #3b82f6;
+  color: #ffffff;
+  padding: 16px 24px;
+  border-radius: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.btn-gradient {
+  background: linear-gradient(to right, #06b6d4, #3b82f6);
+  color: #ffffff;
+  padding: 16px 28px;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* LOGOS */
+.logo {
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+.logo-xs {
+  width: 40px;
+  height: 40px;
+}
+
+.logo-sm {
+  width: 44px;
+  height: 44px;
+}
+
+.logo-md {
+  width: 64px;
+  height: 64px;
+}
+
+.logo-xl {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 32px;
+}
+
+/* SPLASH */
+.splash-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px 0;
+}
+
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gradient-title {
+  margin: 0 0 24px;
+  font-size: clamp(42px, 8vw, 72px);
+  font-weight: 900;
+  line-height: 1.05;
+  background: linear-gradient(to right, #22d3ee, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.splash-text {
+  max-width: 800px;
+  color: #cbd5e1;
+  font-size: 20px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.scroll-indicator {
+  color: #94a3b8;
+  font-size: 14px;
+  animation: bounce 1.5s infinite;
+}
+
+/* SECTIONS */
+.hero-section,
+.section {
+  padding: 80px 0;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  background: rgba(59, 130, 246, 0.1);
+  color: #bae6fd;
+  font-size: 14px;
+  animation: pulseGlow 2.2s infinite;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+}
+
+.hero-title {
+  margin: 0 0 24px;
+  font-size: clamp(38px, 6vw, 64px);
+  font-weight: 900;
+  line-height: 1.08;
+}
+
+.hero-text {
+  margin: 0 0 32px;
+  color: #cbd5e1;
+  font-size: 20px;
+  line-height: 1.75;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* STATS */
+.stats-section {
+  padding: 0 0 40px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.stat-card {
+  border-radius: 24px;
+  padding: 28px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+}
+
+.stat-number {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900;
+  color: #38bdf8;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  color: #cbd5e1;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* CHAT CARD */
+.chat-card {
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chat-card:hover,
+.language-card:hover,
+.service-card:hover,
+.process-card:hover,
+.pricing-card:hover,
+.info-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+.chat-card-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.7), transparent 55%);
+}
+
+.chat-card-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.chat-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.chat-brand-title {
+  font-size: 32px;
+  font-weight: 900;
+}
+
+.chat-brand-subtitle {
+  color: #bae6fd;
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chat-message {
+  max-width: 500px;
+  padding: 16px 20px;
+  border-radius: 24px;
+  line-height: 1.6;
+  animation: messagePop 0.5s ease;
+}
+
+.chat-message.incoming {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.chat-message.outgoing {
+  margin-left: auto;
+  background: linear-gradient(to right, #06b6d4, #3b82f6);
+  color: #ffffff;
+}
+
+.chat-message.neutral {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* TITLES */
+.section-title-wrap {
+  max-width: 780px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.section-title-wrap .logo {
+  margin: 0 auto 20px;
+}
+
+.section-eyebrow {
+  margin: 0 0 12px;
+  color: #7dd3fc;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  margin: 0 0 16px;
+  font-size: clamp(32px, 5vw, 54px);
+  font-weight: 900;
+}
+
+.section-text {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 20px;
+  line-height: 1.75;
+}
+
+/* CARDS */
+.language-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.language-card,
+.service-card,
+.process-card,
+.pricing-card,
+.contact-box,
+.info-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.language-card {
+  position: relative;
+  overflow: hidden;
+  padding: 32px;
+  border-radius: 28px;
+  backdrop-filter: blur(14px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.language-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right, rgba(14, 165, 233, 0.05), transparent);
+}
+
+.language-card-content {
+  position: relative;
+  z-index: 1;
+}
+
+.language-card-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.language-label {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.4);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.language-title {
+  margin: 0 0 20px;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+}
+
+.language-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #e2e8f0;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.bullet-dot {
+  color: #7dd3fc;
+  font-weight: 900;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.service-card {
+  padding: 28px;
+  border-radius: 28px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card .logo {
+  margin-bottom: 20px;
+}
+
+.service-card-title {
+  margin: 0 0 12px;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.service-card-text {
+  margin: 0;
+  color: #cbd5e1;
+  line-height: 1.75;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.process-card {
+  padding: 32px;
+  border-radius: 28px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.process-step {
+  margin: 0 0 16px;
+  color: #7dd3fc;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+}
+
+.process-card-title {
+  margin: 0 0 16px;
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.process-card-text {
+  margin: 0;
+  color: #cbd5e1;
+  line-height: 1.75;
+}
+
+.industries-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.industry-pill {
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-weight: 600;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.industry-pill:hover {
+  transform: translateY(-3px);
+  background: rgba(59, 130, 246, 0.12);
+}
+
+.pricing-grid {
+  max-width: 920px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.pricing-card {
+  padding: 32px;
+  border-radius: 28px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card-featured {
+  border-color: rgba(96, 165, 250, 0.3);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.pricing-label {
+  margin: 0 0 16px;
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+}
+
+.pricing-label-light {
+  color: #cbd5e1;
+}
+
+.pricing-price {
+  margin-bottom: 24px;
+  font-size: 64px;
+  font-weight: 900;
+}
+
+.pricing-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.feature-line {
+  color: #cbd5e1;
+}
+
+.contact-box {
+  overflow: hidden;
+  border-radius: 32px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.contact-info {
+  padding: 40px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-card {
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:last-child {
+  margin-bottom: 0;
+}
+
+.info-label {
+  margin-bottom: 6px;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.info-value {
+  font-weight: 700;
+}
+
+.contact-form {
+  padding: 40px;
+  background: rgba(2, 6, 23, 0.3);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: rgba(56, 189, 248, 0.65);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* FOOTER */
+.site-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: #cbd5e1;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+
+/* ANIMATIONS */
+.fade-in-top {
+  animation: fadeInTop 0.8s ease both;
+}
+
+.float-anim {
+  animation: floatUpDown 4s ease-in-out infinite;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 {
+  transition-delay: 0.15s;
+}
+
+.reveal-delay-2 {
+  transition-delay: 0.3s;
+}
+
+@keyframes fadeInTop {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
   }
-};
-
-let currentLang = "en";
-
-function setAllLogos() {
-  const logos = document.querySelectorAll(".logo");
-  logos.forEach((logo) => {
-    logo.src = logoSvg;
-  });
-}
-
-function renderBullets(containerId, bullets) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = "";
-
-  bullets.forEach((bullet) => {
-    const row = document.createElement("div");
-    row.className = "bullet-item";
-
-    const dot = document.createElement("span");
-    dot.className = "bullet-dot";
-    dot.textContent = "•";
-
-    const text = document.createElement("span");
-    text.textContent = bullet;
-
-    row.appendChild(dot);
-    row.appendChild(text);
-    container.appendChild(row);
-  });
-}
-
-function renderServices(lang) {
-  const grid = document.getElementById("services-grid");
-  grid.innerHTML = "";
-
-  services[lang].forEach((item) => {
-    const card = document.createElement("div");
-    card.className = "service-card";
-
-    const logo = document.createElement("img");
-    logo.src = logoSvg;
-    logo.alt = "GlobalBotSolutions logo";
-    logo.className = "logo logo-sm";
-
-    const title = document.createElement("h3");
-    title.className = "service-card-title";
-    title.textContent = item.title;
-
-    const text = document.createElement("p");
-    text.className = "service-card-text";
-    text.textContent = item.desc;
-
-    card.appendChild(logo);
-    card.appendChild(title);
-    card.appendChild(text);
-    grid.appendChild(card);
-  });
-}
-
-function renderProcess(lang) {
-  const grid = document.getElementById("process-grid");
-  grid.innerHTML = "";
-
-  processData[lang].forEach((item) => {
-    const card = document.createElement("div");
-    card.className = "process-card";
-
-    const step = document.createElement("p");
-    step.className = "process-step";
-    step.textContent = item.step;
-
-    const title = document.createElement("h3");
-    title.className = "process-card-title";
-    title.textContent = item.title;
-
-    const text = document.createElement("p");
-    text.className = "process-card-text";
-    text.textContent = item.desc;
-
-    card.appendChild(step);
-    card.appendChild(title);
-    card.appendChild(text);
-    grid.appendChild(card);
-  });
-}
-
-function renderIndustries() {
-  const wrap = document.getElementById("industries-wrap");
-  wrap.innerHTML = "";
-
-  industries.forEach((industry) => {
-    const pill = document.createElement("div");
-    pill.className = "industry-pill";
-    pill.textContent = industry;
-    wrap.appendChild(pill);
-  });
-}
-
-function renderPricingFeatures(containerId, features) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = "";
-
-  features.forEach((feature) => {
-    const line = document.createElement("div");
-    line.className = "feature-line";
-    line.textContent = `✓ ${feature}`;
-    container.appendChild(line);
-  });
-}
-
-function renderChatMessages(lang) {
-  const message1 = document.getElementById("chat-message-1");
-  const message2 = document.getElementById("chat-message-2");
-  const message3 = document.getElementById("chat-message-3");
-
-  if (lang === "en") {
-    message1.textContent =
-      "Hello! I'm here to help answer questions, automate FAQs, and capture leads for your business website.";
-    message2.textContent =
-      "Can you build a bot that answers customer service questions and sends us more inquiries?";
-    message3.textContent =
-      "Yes. We create branded chatbot experiences that can answer common questions, guide visitors, and help convert traffic into leads.";
-  } else {
-    message1.textContent =
-      "¡Hola! Estoy aquí para ayudar a responder preguntas, automatizar preguntas frecuentes y captar prospectos para tu sitio web de negocio.";
-    message2.textContent =
-      "¿Puedes crear un bot que responda preguntas de servicio al cliente y nos envíe más consultas?";
-    message3.textContent =
-      "Sí. Creamos experiencias de chatbot con tu marca que pueden responder preguntas comunes, guiar visitantes y ayudar a convertir tráfico en prospectos.";
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-function updateLanguageButtons(lang) {
-  const btnEn = document.getElementById("btn-en");
-  const btnEs = document.getElementById("btn-es");
-
-  btnEn.classList.toggle("active", lang === "en");
-  btnEs.classList.toggle("active", lang === "es");
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
-function renderContent(lang) {
-  currentLang = lang;
-  const t = content[lang];
-
-  // Nav
-  document.getElementById("nav-services").textContent = t.nav[0];
-  document.getElementById("nav-languages").textContent = t.nav[1];
-  document.getElementById("nav-process").textContent = t.nav[2];
-  document.getElementById("nav-pricing").textContent = t.nav[3];
-  document.getElementById("nav-contact").textContent = t.nav[4];
-
-  // Header button
-  document.getElementById("header-demo-btn").textContent = t.demo;
-
-  // Hero
-  document.getElementById("hero-badge").lastChild.textContent = ` ${t.badge}`;
-  document.getElementById("hero-title").textContent = t.heroTitle;
-  document.getElementById("hero-text").textContent = t.heroText;
-  document.getElementById("hero-cta1").textContent = t.cta1;
-
-  // Bilingual section
-  document.getElementById("bilingual-eyebrow").textContent = t.bilingualEyebrow;
-  document.getElementById("bilingual-title").textContent = t.bilingualTitle;
-  document.getElementById("bilingual-text").textContent = t.bilingualText;
-
-  document.getElementById("box1-label").textContent = t.box1Label;
-  document.getElementById("box1-title").textContent = t.box1Title;
-  document.getElementById("box1-cta").textContent = t.requestDemo;
-
-  document.getElementById("box2-label").textContent = t.box2Label;
-  document.getElementById("box2-title").textContent = t.box2Title;
-  document.getElementById("box2-cta").textContent = t.requestDemo;
-
-  renderBullets("box1-bullets", t.box1Bullets);
-  renderBullets("box2-bullets", t.box2Bullets);
-
-  // Services section
-  document.getElementById("services-eyebrow").textContent = t.servicesEyebrow;
-  document.getElementById("services-title").textContent = t.servicesTitle;
-  document.getElementById("services-text").textContent = t.servicesText;
-  renderServices(lang);
-
-  // Process section
-  document.getElementById("process-eyebrow").textContent = t.processEyebrow;
-  document.getElementById("process-title").textContent = t.processTitle;
-  document.getElementById("process-text").textContent = t.processText;
-  renderProcess(lang);
-
-  // Industries section
-  document.getElementById("industries-eyebrow").textContent = t.industriesEyebrow;
-  document.getElementById("industries-title").textContent = t.industriesTitle;
-  document.getElementById("industries-text").textContent = t.industriesText;
-
-  // Pricing section
-  document.getElementById("pricing-eyebrow").textContent = t.pricingEyebrow;
-  document.getElementById("pricing-title").textContent = t.pricingTitle;
-  document.getElementById("pricing-text").textContent = t.pricingText;
-  document.getElementById("setup-label").textContent = t.setupLabel;
-  document.getElementById("monthly-label").textContent = t.monthlyLabel;
-  document.getElementById("pricing-cta-1").textContent = t.sendInquiry;
-  document.getElementById("pricing-cta-2").textContent = t.sendInquiry;
-  renderPricingFeatures("setup-features", t.setupFeatures);
-  renderPricingFeatures("monthly-features", t.monthlyFeatures);
-
-  // Contact section
-  document.getElementById("contact-eyebrow").textContent = t.contactEyebrow;
-  document.getElementById("contact-title").textContent = t.contactTitle;
-  document.getElementById("contact-text").textContent = t.contactText;
-  document.getElementById("email-label").textContent = t.emailLabel;
-  document.getElementById("phone-label").textContent = t.phoneLabel;
-  document.getElementById("offer-label").textContent = t.offerLabel;
-  document.getElementById("offer-value").textContent = t.offerValue;
-  document.getElementById("business-name").placeholder = t.businessName;
-  document.getElementById("your-name").placeholder = t.yourName;
-  document.getElementById("email-address").placeholder = t.emailAddress;
-  document.getElementById("details").placeholder = t.details;
-  document.getElementById("contact-submit").textContent = t.sendInquiry;
-
-  // Footer
-  document.getElementById("footer-text").textContent = t.footer;
-  document.getElementById("footer-services").textContent = t.nav[0];
-  document.getElementById("footer-pricing").textContent = t.nav[3];
-  document.getElementById("footer-contact").textContent = t.nav[4];
-
-  // Chat messages
-  renderChatMessages(lang);
-
-  // Button state
-  updateLanguageButtons(lang);
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  setAllLogos();
-  renderIndustries();
-  renderContent("en");
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(56, 189, 248, 0);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.18);
+  }
+}
 
-  document.getElementById("btn-en").addEventListener("click", function () {
-    renderContent("en");
-  });
+@keyframes messagePop {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
 
-  document.getElementById("btn-es").addEventListener("click", function () {
-    renderContent("es");
-  });
-});
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-grid,
+  .language-grid,
+  .pricing-grid,
+  .contact-grid,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-info {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (max-width: 900px) {
+  .main-nav,
+  .desktop-lang-switch,
+  .header-demo-btn {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-block;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stats-section {
+    padding-bottom: 20px;
+  }
+}
+
+@media (min-width: 901px) {
+  .mobile-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: min(1120px, calc(100% - 32px));
+  }
+
+  .hero-section,
+  .section {
+    padding: 64px 0;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-inner {
+    flex-wrap: nowrap;
+  }
+
+  .pricing-price {
+    font-size: 52px;
+  }
+
+  .chat-brand-title {
+    font-size: 24px;
+  }
+
+  .mobile-link {
+    font-size: 18px;
+  }
+
+  .stat-card {
+    padding: 24px 18px;
+  }
+
+  .section-text,
+  .hero-text,
+  .splash-text {
+    font-size: 18px;
+  }
+}
