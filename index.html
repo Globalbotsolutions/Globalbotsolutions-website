@@ -13,7 +13,7 @@
     <!-- HEADER -->
     <header class="site-header">
       <div class="container header-inner">
-        <div class="brand">
+        <div class="brand fade-in-top">
           <img id="header-logo" class="logo logo-sm" alt="GlobalBotSolutions logo" />
           <div>
             <div class="brand-title">GlobalBotSolutions</div>
@@ -21,7 +21,8 @@
           </div>
         </div>
 
-        <nav class="main-nav">
+        <!-- DESKTOP NAV -->
+        <nav class="main-nav fade-in-top">
           <a href="#services" id="nav-services">Services</a>
           <a href="#languages" id="nav-languages">Languages</a>
           <a href="#process" id="nav-process">Process</a>
@@ -29,20 +30,64 @@
           <a href="#contact" id="nav-contact">Contact</a>
         </nav>
 
-        <div class="header-actions">
-          <div class="lang-switch">
-            <button id="btn-en" class="lang-btn active">EN</button>
-            <button id="btn-es" class="lang-btn">ES</button>
+        <div class="header-actions fade-in-top">
+          <div class="lang-switch desktop-lang-switch">
+            <button id="btn-en" class="lang-btn active" type="button">EN</button>
+            <button id="btn-es" class="lang-btn" type="button">ES</button>
           </div>
-          <a href="#contact" id="header-demo-btn" class="btn btn-primary btn-small">Get a Demo</a>
+
+          <a href="#contact" id="header-demo-btn" class="btn btn-primary btn-small header-demo-btn">Get a Demo</a>
+
+          <!-- MOBILE HAMBURGER -->
+          <button id="menu-toggle" class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MOBILE OVERLAY MENU -->
+      <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+        <div class="mobile-menu-panel">
+          <div class="mobile-menu-top">
+            <div class="brand mobile-brand">
+              <img id="mobile-menu-logo" class="logo logo-sm" alt="GlobalBotSolutions logo" />
+              <div>
+                <div class="brand-title">GlobalBotSolutions</div>
+                <div class="brand-subtitle">Chatbots for Business Websites</div>
+              </div>
+            </div>
+
+            <button id="menu-close" class="menu-close" type="button" aria-label="Close menu">
+              ×
+            </button>
+          </div>
+
+          <div class="mobile-menu-links">
+            <a href="#services" class="mobile-link" id="mobile-nav-services">Services</a>
+            <a href="#languages" class="mobile-link" id="mobile-nav-languages">Languages</a>
+            <a href="#process" class="mobile-link" id="mobile-nav-process">Process</a>
+            <a href="#pricing" class="mobile-link" id="mobile-nav-pricing">Pricing</a>
+            <a href="#contact" class="mobile-link" id="mobile-nav-contact">Contact</a>
+          </div>
+
+          <div class="mobile-menu-bottom">
+            <div class="lang-switch mobile-lang-switch">
+              <button id="mobile-btn-en" class="lang-btn active" type="button">EN</button>
+              <button id="mobile-btn-es" class="lang-btn" type="button">ES</button>
+            </div>
+
+            <a href="#contact" id="mobile-demo-btn" class="btn btn-gradient btn-block">Get a Demo</a>
+          </div>
         </div>
       </div>
     </header>
 
-    <!-- SPLASH SECTION -->
+    <!-- SPLASH -->
     <section class="splash-section">
-      <div class="container splash-content">
-        <img id="splash-logo" class="logo logo-xl" alt="GlobalBotSolutions logo" />
+      <div class="container splash-content reveal">
+        <img id="splash-logo" class="logo logo-xl float-anim" alt="GlobalBotSolutions logo" />
         <h1 class="gradient-title">Welcome to your future chatbot</h1>
         <p class="splash-text">
           Scroll down to explore how your business can look smarter, faster, and more professional with AI automation.
@@ -54,7 +99,7 @@
     <!-- HERO -->
     <section class="hero-section">
       <div class="container hero-grid">
-        <div class="hero-left">
+        <div class="hero-left reveal">
           <div class="hero-badge" id="hero-badge">
             <span class="badge-dot"></span>
             Customer service, FAQ answering, and lead capture
@@ -73,7 +118,7 @@
           </div>
         </div>
 
-        <div class="chat-card">
+        <div class="chat-card reveal reveal-delay-1">
           <div class="chat-card-glow"></div>
 
           <div class="chat-card-inner">
@@ -95,10 +140,34 @@
       </div>
     </section>
 
-    <!-- LANGUAGES / BILINGUAL -->
+    <!-- STATS BAR -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid reveal">
+          <div class="stat-card">
+            <div class="stat-number count-up" data-target="24">0</div>
+            <div class="stat-label" id="stat-label-1">Hour inquiry coverage feel</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number count-up" data-target="3">0</div>
+            <div class="stat-label" id="stat-label-2">Step setup process</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number count-up" data-target="2">0</div>
+            <div class="stat-label" id="stat-label-3">Languages supported</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number count-up" data-target="8">0</div>
+            <div class="stat-label" id="stat-label-4">Industries shown</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANGUAGES -->
     <section id="languages" class="section">
       <div class="container">
-        <div class="section-title-wrap">
+        <div class="section-title-wrap reveal">
           <img id="languages-title-logo" class="logo logo-md" alt="GlobalBotSolutions logo" />
           <p class="section-eyebrow" id="bilingual-eyebrow">Bilingual Layout</p>
           <h2 class="section-title" id="bilingual-title">Organized Horizontal Language Boxes</h2>
@@ -108,7 +177,7 @@
         </div>
 
         <div class="language-grid">
-          <div class="language-card">
+          <div class="language-card reveal">
             <div class="language-card-overlay"></div>
             <div class="language-card-content">
               <div class="language-card-top">
@@ -117,14 +186,12 @@
               </div>
 
               <h3 class="language-title" id="box1-title">Chatbots for Business Websites</h3>
-
               <div class="language-bullets" id="box1-bullets"></div>
-
-              <button class="btn btn-gradient" id="box1-cta">Request a Demo</button>
+              <button class="btn btn-gradient" id="box1-cta" type="button">Request a Demo</button>
             </div>
           </div>
 
-          <div class="language-card">
+          <div class="language-card reveal reveal-delay-1">
             <div class="language-card-overlay"></div>
             <div class="language-card-content">
               <div class="language-card-top">
@@ -133,10 +200,8 @@
               </div>
 
               <h3 class="language-title" id="box2-title">Chatbots con IA para sitios web de negocios</h3>
-
               <div class="language-bullets" id="box2-bullets"></div>
-
-              <button class="btn btn-gradient" id="box2-cta">Request a Demo</button>
+              <button class="btn btn-gradient" id="box2-cta" type="button">Request a Demo</button>
             </div>
           </div>
         </div>
@@ -146,7 +211,7 @@
     <!-- SERVICES -->
     <section id="services" class="section">
       <div class="container">
-        <div class="section-title-wrap">
+        <div class="section-title-wrap reveal">
           <img id="services-title-logo" class="logo logo-md" alt="GlobalBotSolutions logo" />
           <p class="section-eyebrow" id="services-eyebrow">SERVICES</p>
           <h2 class="section-title" id="services-title">What GlobalBotSolutions Offers</h2>
@@ -162,7 +227,7 @@
     <!-- PROCESS -->
     <section id="process" class="section">
       <div class="container">
-        <div class="section-title-wrap">
+        <div class="section-title-wrap reveal">
           <img id="process-title-logo" class="logo logo-md" alt="GlobalBotSolutions logo" />
           <p class="section-eyebrow" id="process-eyebrow">HOW IT WORKS</p>
           <h2 class="section-title" id="process-title">Simple Process, Professional Result</h2>
@@ -178,7 +243,7 @@
     <!-- INDUSTRIES -->
     <section class="section">
       <div class="container">
-        <div class="section-title-wrap">
+        <div class="section-title-wrap reveal">
           <img id="industries-title-logo" class="logo logo-md" alt="GlobalBotSolutions logo" />
           <p class="section-eyebrow" id="industries-eyebrow">INDUSTRIES</p>
           <h2 class="section-title" id="industries-title">Built for Service Businesses</h2>
@@ -194,7 +259,7 @@
     <!-- PRICING -->
     <section id="pricing" class="section">
       <div class="container">
-        <div class="section-title-wrap">
+        <div class="section-title-wrap reveal">
           <img id="pricing-title-logo" class="logo logo-md" alt="GlobalBotSolutions logo" />
           <p class="section-eyebrow" id="pricing-eyebrow">PRICING</p>
           <h2 class="section-title" id="pricing-title">Simple Pricing to Start Selling Fast</h2>
@@ -204,14 +269,14 @@
         </div>
 
         <div class="pricing-grid">
-          <div class="pricing-card">
+          <div class="pricing-card reveal">
             <p class="pricing-label" id="setup-label">ONE-TIME STARTUP FEE</p>
-            <div class="pricing-price">$349.99</div>
+            <div class="pricing-price">$399.99</div>
             <div class="pricing-features" id="setup-features"></div>
             <a href="#contact" class="btn btn-gradient btn-block" id="pricing-cta-1">Send Inquiry</a>
           </div>
 
-          <div class="pricing-card pricing-card-featured">
+          <div class="pricing-card pricing-card-featured reveal reveal-delay-1">
             <p class="pricing-label pricing-label-light" id="monthly-label">MONTHLY FEE</p>
             <div class="pricing-price">$199.99</div>
             <div class="pricing-features" id="monthly-features"></div>
@@ -224,7 +289,7 @@
     <!-- CONTACT -->
     <section id="contact" class="section">
       <div class="container">
-        <div class="section-title-wrap">
+        <div class="section-title-wrap reveal">
           <img id="contact-title-logo" class="logo logo-md" alt="GlobalBotSolutions logo" />
           <p class="section-eyebrow" id="contact-eyebrow">CONTACT</p>
           <h2 class="section-title" id="contact-title">Let's Build Your Front-End Website</h2>
@@ -233,7 +298,7 @@
           </p>
         </div>
 
-        <div class="contact-box">
+        <div class="contact-box reveal">
           <div class="contact-grid">
             <div class="contact-info">
               <div class="info-card">
@@ -257,7 +322,7 @@
               <input type="text" id="your-name" placeholder="Your name" />
               <input type="email" id="email-address" placeholder="Email address" />
               <textarea id="details" placeholder="Tell us about your business and what you want the chatbot to do"></textarea>
-              <button class="btn btn-gradient btn-block" id="contact-submit">Send Inquiry</button>
+              <button class="btn btn-gradient btn-block" id="contact-submit" type="button">Send Inquiry</button>
             </div>
           </div>
         </div>
