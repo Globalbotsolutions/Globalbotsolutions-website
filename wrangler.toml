@@ -1,0 +1,27 @@
+# Cloudflare Pages project configuration.
+# Build command: npm run build      Build output directory: dist
+name = "globalbotsolutions-website"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-10-01"
+
+# ---- Optional bindings (uncomment and fill in, or add them in the Pages dashboard) ----
+# Email delivery through Cloudflare Email Routing (destination must be verified):
+# [[send_email]]
+# name = "LEAD_EMAIL"
+# destination_address = "info@globalbotsolutions.com"
+#
+# Durable rate limiting:
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT"
+# id = "<kv-namespace-id>"
+#
+# Private backup copy of each lead (kept 90 days):
+# [[kv_namespaces]]
+# binding = "LEADS"
+# id = "<kv-namespace-id>"
+#
+# Plain-text variables (secrets such as RESEND_API_KEY and TURNSTILE_SECRET_KEY must be
+# added as encrypted secrets in the dashboard or with `wrangler pages secret put`, never here):
+# [vars]
+# LEAD_FROM = "Global Bot Solutions Website <quotes@globalbotsolutions.com>"
+# LEAD_TO = "info@globalbotsolutions.com"
