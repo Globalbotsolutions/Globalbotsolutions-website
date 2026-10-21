@@ -78,4 +78,4 @@ http.createServer(async (req, res) => {
   if (!existsSync(file)) { status = 404; file = join(ROOT, path.startsWith("/es/") ? "es/404.html" : "404.html"); }
   res.writeHead(status, { "Content-Type": TYPES[extname(file)] || "application/octet-stream", ...headersFor(path) });
   res.end(readFileSync(file));
-}).listen(PORT, () => console.log(`Preview: http://localhost:${PORT}  (form delivery: ${process.env.DEV_FAKE_EMAIL ? "fake, printed here" : env.RESEND_API_KEY ? "Resend" : "not configured → form will show an error"})`));
+}).listen(PORT, "127.0.0.1", () => console.log(`Preview: http://localhost:${PORT}  (form delivery: ${process.env.DEV_FAKE_EMAIL ? "fake, printed here" : env.RESEND_API_KEY ? "Resend" : "not configured → form will show an error"})`));
