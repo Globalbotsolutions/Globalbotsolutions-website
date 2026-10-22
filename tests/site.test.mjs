@@ -173,6 +173,7 @@ test("demo pages are clearly labeled as simulated", () => {
 test("no unfinished placeholders or internal notes on any page", () => {
   for (const f of pageFiles) {
     const t = textOf(read(f));
-    assert.doesNotMatch(t, /\[(Owner|owner|Por completar|Por confirmar)[^\]]*\]|TODO|lorem ipsum|before publication|antes de publicarse/i, f);
+    assert.doesNotMatch(t, /\[(Owner|owner|Por completar|Por confirmar)[^\]]*\]|lorem ipsum|before publication|antes de publicarse/i, f);
+    assert.doesNotMatch(t, /\bTODO\b|\bFIXME\b/, f);
   }
 });
