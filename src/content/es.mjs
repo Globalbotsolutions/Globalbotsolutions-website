@@ -164,8 +164,8 @@ export default {
 
   pages: {
     home: {
-      title: "Páginas Web, Recepcionistas con IA y Automatización | Global Bot Solutions",
-      description: "Páginas web profesionales, recepcionistas de voz con IA, chatbots y reservas en línea para pequeños negocios en Nueva Jersey y más. En inglés y español. Solicita tu cotización.",
+      title: "Páginas Web e IA para Negocios en NJ | Global Bot Solutions",
+      description: "Páginas web profesionales, recepcionistas con IA, chatbots y reservas en línea para negocios en Nueva Jersey. En inglés y español. Cotiza gratis.",
       hero: {
         h1: "Tu Negocio. Más Inteligente, Más Rápido y Automatizado.",
         text: "Páginas web profesionales, recepcionistas inteligentes con IA y soluciones de automatización diseñadas según tus objetivos, tus clientes y tu presupuesto.",
@@ -247,7 +247,7 @@ export default {
     },
 
     services: {
-      title: "Servicios: Páginas Web, Chatbots, Recepcionistas con IA y Automatización | Global Bot Solutions",
+      title: "Servicios: Páginas Web, Chatbots e IA | Global Bot Solutions",
       description: "Diseño web, chatbots con IA, recepcionistas de voz con IA, reservas en línea, tarjetas NFC, mantenimiento y automatización para pequeños negocios.",
       h1: "Servicios que ayudan a tu negocio a verse profesional y responder más rápido",
       intro: "Cada servicio funciona solo o junto con los demás. Tu propuesta incluye únicamente lo que tu negocio necesita.",
@@ -263,7 +263,7 @@ export default {
     servicePages: {
       "website-design": {
         icon: "website",
-        title: "Diseño de Páginas Web para Pequeños Negocios en Nueva Jersey | Global Bot Solutions",
+        title: "Diseño Web para Negocios en NJ | Global Bot Solutions",
         description: "Páginas web modernas, adaptadas a celulares y bilingües para pequeños negocios. Formularios, galerías, SEO básico y soporte. Solicita tu cotización.",
         name: "Diseño de Páginas Web Profesionales",
         h1: "Una página web profesional que facilita que te elijan",
@@ -293,7 +293,7 @@ export default {
       },
       "ai-receptionist": {
         icon: "voice",
-        title: "Recepcionista de Voz con IA para Pequeños Negocios | Global Bot Solutions",
+        title: "Recepcionista con IA para Negocios | Global Bot Solutions",
         description: "Una recepcionista de voz con IA que puede contestar llamadas comunes, dar información, tomar solicitudes de cita y canalizar llamadas, en inglés y español.",
         name: "Recepcionistas de Voz con IA",
         h1: "Contesta más llamadas sin contratar más personal",
@@ -330,7 +330,7 @@ export default {
       },
       "ai-chatbots": {
         icon: "chat",
-        title: "Chatbot con IA para Sitios Web de Pequeños Negocios | Global Bot Solutions",
+        title: "Chatbot con IA para Sitios Web | Global Bot Solutions",
         description: "Un asistente de chat bilingüe con IA para tu sitio web que responde preguntas frecuentes, informa sobre tus servicios, recibe consultas y pasa a tu equipo.",
         name: "Chatbots con IA",
         h1: "Un asistente en tu sitio web que responde mientras tú trabajas",
@@ -360,7 +360,7 @@ export default {
       },
       "online-booking": {
         icon: "calendar",
-        title: "Reservas en Línea y Automatización de Citas | Global Bot Solutions",
+        title: "Reservas en Línea y Citas Automáticas | Global Bot Solutions",
         description: "Tus clientes eligen un servicio y solicitan o reservan citas en línea, con confirmaciones y opciones de integración con calendario.",
         name: "Reservas en Línea Automatizadas",
         h1: "Que tus clientes reserven sin tener que llamar",
@@ -421,7 +421,7 @@ export default {
       },
       "website-maintenance": {
         icon: "maintenance",
-        title: "Mantenimiento de Sitios Web para Pequeños Negocios | Global Bot Solutions",
+        title: "Mantenimiento de Sitios Web | Global Bot Solutions",
         description: "Actualizaciones de contenido, cuidado técnico, monitoreo y mejoras para que el sitio web de tu negocio esté al día y funcionando.",
         name: "Mantenimiento de Sitios Web",
         h1: "Tu sitio web al día sin que tengas que pensar en ello",
@@ -451,7 +451,7 @@ export default {
       },
       "business-automation": {
         icon: "automation",
-        title: "Automatización de Negocios y de Servicio al Cliente en Nueva Jersey | Global Bot Solutions",
+        title: "Automatización de Negocios en NJ | Global Bot Solutions",
         description: "Canalización de consultas, flujos de citas, atención al cliente con IA e integraciones personalizadas que ahorran tiempo a los pequeños negocios.",
         name: "Automatización Personalizada",
         h1: "Automatiza el trabajo repetitivo alrededor de tus clientes",
@@ -482,7 +482,7 @@ export default {
     },
 
     ai: {
-      title: "Demostraciones de Chatbot, Recepcionista con IA y Reservas | Global Bot Solutions",
+      title: "Demos de Chatbot y Recepcionista IA | Global Bot Solutions",
       description: "Prueba demostraciones interactivas de chatbots con IA, una llamada con recepcionista de voz, reservas en línea y tarjetas NFC, en inglés y español.",
       h1: "Descubre lo que la IA puede hacer por tu negocio",
       intro: "Explora demostraciones de las herramientas que configuramos para pequeños negocios. Elige una industria, cambia de idioma y pruébalas tú mismo.",
@@ -612,8 +612,8 @@ export default {
     },
 
     industries: {
-      title: "Páginas Web y Automatización con IA por Industria | Global Bot Solutions",
-      description: "Páginas web, chatbots, recepcionistas con IA y reservas para restaurantes, barberías, salones, consultorios dentales, talleres, transporte, lavanderías, climatización y servicios para el hogar.",
+      title: "Páginas Web e IA por Industria | Global Bot Solutions",
+      description: "Páginas web, chatbots, recepcionistas con IA y reservas para restaurantes, salones, consultorios dentales, talleres, HVAC y transporte.",
       h1: "Soluciones pensadas para tu industria",
       intro: "Cada tipo de negocio recibe preguntas distintas y atiende a sus clientes de manera diferente. Así es como nuestras herramientas suelen ayudar en el tuyo.",
       needsLabel: "Lo que necesitan tus clientes",
@@ -634,7 +634,7 @@ export default {
     },
 
     portfolio: {
-      title: "Portafolio: Conceptos de Páginas Web y Automatización | Global Bot Solutions",
+      title: "Portafolio de Páginas Web e IA | Global Bot Solutions",
       description: "Diseños conceptuales que muestran el tipo de páginas web, chatbots y reservas que Global Bot Solutions crea para pequeños negocios.",
       h1: "Nuestro trabajo",
       intro: "Estos proyectos conceptuales muestran el estilo y las funciones que creamos para pequeños negocios. Los proyectos de clientes se agregarán aquí cuando se aprueben para publicarse.",
@@ -652,7 +652,7 @@ export default {
     },
 
     custom: {
-      title: "Soluciones a la Medida y Cotizaciones Personalizadas | Global Bot Solutions",
+      title: "Soluciones a la Medida y Cotizaciones | Global Bot Solutions",
       description: "Sin paquetes genéricos. Recibe una propuesta personalizada para una página web, automatización con IA o una solución completa según tus objetivos y presupuesto.",
       h1: "Soluciones Inteligentes. A la Medida de Tu Negocio. Con Precios Pensados para Ti.",
       intro: "Cada negocio tiene necesidades diferentes. Creamos soluciones prácticas y personalizadas que se ajustan a tus objetivos y a tu presupuesto. Sin funciones innecesarias. Sin paquetes genéricos. Solo la tecnología adecuada para tu negocio.",
@@ -674,7 +674,7 @@ export default {
     },
 
     about: {
-      title: "Sobre Global Bot Solutions | Páginas Web e IA para Pequeños Negocios",
+      title: "Sobre Global Bot Solutions | Páginas Web e IA en NJ",
       description: "Global Bot Solutions LLC crea páginas web profesionales y herramientas prácticas de IA para pequeños negocios, con atención completa en inglés y español.",
       h1: "Tecnología pensada para pequeños negocios",
       intro: "Global Bot Solutions LLC ayuda a pequeños negocios a verse profesionales en línea y a responder más rápido a sus clientes, con páginas web y herramientas prácticas de IA, en inglés y español.",
