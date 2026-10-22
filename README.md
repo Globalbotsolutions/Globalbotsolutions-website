@@ -123,5 +123,9 @@ These records live only under `updates.` subdomains. The root `MX smtp.google.co
 - Analytics: optional, cookie-free Cloudflare Web Analytics (`cfAnalyticsToken` in site config).
 - Portfolio: replace or add to the concept designs with real client work you have permission to show.
 - About page: currently describes the company without naming people. Add your name or photo if you'd like.
-- Service area wording says New Jersey plus remote U.S. Confirm that's accurate.
+- Positioning is worldwide and fully online. By the owner's decision the site never publishes the owner's
+  or company's location (no address, city or state, no offices). The only state named is Wyoming, in the
+  Terms' governing-law clause. `tests/worldwide.test.mjs` enforces this.
+- Sitemap `lastmod` and the legal pages' "Last updated" come from `contentUpdated` / `legalUpdated` in
+  `src/site.config.mjs`. Bump them only when that content really changes.
 - HSTS is set without `preload`/`includeSubDomains`. Extend only if every subdomain is HTTPS.

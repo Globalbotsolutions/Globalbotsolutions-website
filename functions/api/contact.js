@@ -21,6 +21,9 @@ const INDUSTRIES = ["restaurant", "barbershop", "hair-salon", "dental", "auto-re
 const SERVICES = ["website-design", "ai-receptionist", "ai-chatbots", "online-booking", "customer-service", "nfc-review-cards", "website-maintenance", "business-automation", "not-sure"];
 const BUDGETS = ["", "essential", "complete", "recommendations", "private"];
 const LANGS = ["en", "es"];
+const CONTACT_METHODS = ["", "email", "phone", "either"];
+// IANA time zone names such as "America/Bogota" or "Europe/Madrid" (sent by the browser, optional)
+const TIMEZONE = /^[A-Za-z_]+(\/[A-Za-z0-9_+\-]+){0,2}$/;
 
 const memoryHits = new Map(); // best-effort fallback when no KV is bound
 
@@ -47,6 +50,10 @@ export function validate(raw) {
     budget: clean(raw.budget, 40),
     consultation: raw.consultation === true,
     page_lang: clean(raw.page_lang, 5),
+    // Optional international details. Never required; invalid values are dropped, not rejected.
+    country: oneLine(clean(raw.country, 60)),
+    contact_method: clean(raw.contact_method, 10),
+    timezone: oneLine(clean(raw.timezone, 50)),
     tracking: {},
   };
   const errors = {};
@@ -61,6 +68,10 @@ export function validate(raw) {
   if (!LANGS.includes(d.language)) d.language = "en";
   if (!LANGS.includes(d.page_lang)) d.page_lang = "en";
   if (!BUDGETS.includes(d.budget)) d.budget = "";
+  if (!CONTACT_METHODS.includes(d.contact_method)) d.contact_method = "";
+  if (!/^[\p{L}\p{M} .,'()\-]*$/u.test(d.country)) d.country = "";
+  // Time zone is only useful (and only sent by the form) when a consultation call is requested.
+  if (!d.consultation || !TIMEZONE.test(d.timezone)) d.timezone = "";
 
   // Campaign parameters: only known keys, short values
   try {
@@ -114,6 +125,7 @@ const LABELS = {
   industry: { restaurant: "Restaurant", barbershop: "Barbershop", "hair-salon": "Hair salon", dental: "Dental office", "auto-repair": "Auto repair shop", transportation: "Transportation company", laundromat: "Laundromat", hvac: "HVAC", "home-services": "Home services", other: "Other" },
   services: { "website-design": "Professional website", "ai-receptionist": "AI voice receptionist", "ai-chatbots": "AI chatbot", "online-booking": "Online booking", "customer-service": "Customer service automation", "nfc-review-cards": "NFC review cards", "website-maintenance": "Website maintenance", "business-automation": "Custom business automation", "not-sure": "Not sure yet" },
   budget: { "": "—", essential: "Essential solution", complete: "Complete solution", recommendations: "Open to recommendations", private: "Prefers to discuss privately" },
+  contact_method: { "": "—", email: "Email", phone: "Phone call", either: "Email or phone" },
 };
 
 export function composeEmail(d) {
@@ -122,12 +134,15 @@ export function composeEmail(d) {
     ["Business", d.business],
     ["Email", d.email],
     ["Phone", d.phone || "—"],
+    ["Country", d.country || "—"],
+    ["Preferred contact method", LABELS.contact_method[d.contact_method]],
     ["Industry", LABELS.industry[d.industry]],
     ["Services", d.services.map((s) => LABELS.services[s]).join(", ")],
     ["Current website", d.website || "—"],
     ["Preferred language", d.language === "es" ? "Spanish" : "English"],
     ["Project scope", LABELS.budget[d.budget]],
     ["Wants free consultation", d.consultation ? "Yes" : "No"],
+    ...(d.timezone ? [["Visitor's time zone", d.timezone]] : []),
     ["Form language", d.page_lang === "es" ? "Spanish page" : "English page"],
     ...Object.entries(d.tracking).map(([k, v]) => [k, v]),
   ];

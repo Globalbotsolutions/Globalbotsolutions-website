@@ -38,7 +38,7 @@ export default {
   },
 
   footer: {
-    blurb: "Professional websites, AI receptionists, chatbots and business automation for small businesses — in English and Spanish.",
+    blurb: "Professional websites, AI receptionists, chatbots and business automation for businesses worldwide — in English and Spanish.",
     servicesHead: "Services",
     companyHead: "Company",
     contactHead: "Contact",
@@ -59,7 +59,7 @@ export default {
     typing: "Assistant is typing",
     quote: "Get My Custom Quote",
     disclaimer: "AI answers can contain mistakes. For exact details, request a quote or contact us.",
-    offline: "The chat is unavailable right now. Please use the quote form, or email info@globalbotsolutions.com or call (307) 217-8616.",
+    offline: "The chat is unavailable right now. Please use the quote form, or email info@globalbotsolutions.com or call +1 (307) 217-8616.",
     busy: "Too many messages in a short time. Please wait a minute and try again.",
     tooLong: "Please keep messages under 500 characters.",
     suggestions: ["What services do you offer?", "Do you build websites in Spanish?", "How does the AI receptionist work?"],
@@ -98,6 +98,12 @@ export default {
     business: "Business name",
     email: "Email",
     phone: "Phone number",
+    phonePlaceholder: "Include your country code, e.g. +44",
+    country: "Country",
+    contactMethod: "Preferred contact method",
+    contactMethodPlaceholder: "Choose one (optional)",
+    contactMethods: { email: "Email", phone: "Phone call", either: "Either is fine" },
+    tzNote: "We'll include your time zone ({tz}) so we can suggest call times that work for you.",
     optional: "optional",
     industry: "Business industry",
     industryPlaceholder: "Choose your industry",
@@ -167,12 +173,13 @@ export default {
   pages: {
     // ===================== HOME =====================
     home: {
-      title: "Websites & AI for NJ Small Businesses | Global Bot Solutions",
-      description: "Professional websites, AI receptionists, chatbots and online booking for New Jersey small businesses. English and Spanish. Get a free custom quote.",
+      title: "Websites & AI for Business Worldwide | Global Bot Solutions",
+      description: "Professional websites, AI chatbots, AI receptionists, online booking and business automation for businesses worldwide. English and Spanish. Free custom quote.",
       hero: {
+        eyebrow: "Smart Digital Solutions for Businesses Worldwide",
         h1: "Your Business. Smarter, Faster, Automated.",
-        text: "Professional websites, intelligent AI receptionists, and powerful business automation solutions designed around your goals, your customers, and your budget.",
-        points: ["English and Spanish", "Built around your business", "Personalized proposals"],
+        text: "Professional websites, AI-powered customer service, intelligent virtual receptionists, automated booking systems, and business automation solutions designed to help businesses grow — wherever they operate.",
+        points: ["Serving businesses worldwide", "English and Spanish", "Fully digital, custom proposals"],
         visual: {
           site: "Rivera Family Dental",
           siteTag: "Gentle care for the whole family",
@@ -192,11 +199,11 @@ export default {
         title: "Modern Technology. Practical Solutions. Real Business Value.",
         items: [
           { icon: "sliders", t: "Customized business solutions", d: "Every project starts from your goals, not a template." },
-          { icon: "globe", t: "English and Spanish support", d: "Bilingual websites, chat and calls for bilingual customers." },
+          { icon: "globe", t: "English and Spanish support", d: "Bilingual websites, chat and calls for customers in any market." },
           { icon: "website", t: "Professional website development", d: "Fast, accessible, mobile-first sites." },
           { icon: "chat", t: "AI-powered customer assistance", d: "Answer common questions any time of day." },
           { icon: "layers", t: "Flexible service configurations", d: "Start with one service, add more when it makes sense." },
-          { icon: "support", t: "Ongoing technical support", d: "Help with updates and changes, as agreed in your plan." },
+          { icon: "support", t: "Fully digital delivery", d: "We plan, build and support your project online, wherever you are, as agreed in your plan." },
         ],
       },
       services: {
@@ -240,7 +247,7 @@ export default {
         ],
       },
       industries: {
-        title: "Built for local service businesses",
+        title: "Built for service businesses",
         text: "Restaurants, barbershops, dental offices, auto shops and more — each with different customers and different questions.",
       },
       final: {
@@ -268,8 +275,8 @@ export default {
     servicePages: {
       "website-design": {
         icon: "website",
-        title: "Small Business Website Design in NJ | Global Bot Solutions",
-        description: "Modern, mobile-friendly, bilingual websites for small businesses. Contact forms, galleries, SEO basics and ongoing support. Request a custom quote.",
+        title: "Small Business Website Design | Global Bot Solutions",
+        description: "Modern, mobile-friendly, bilingual websites for small businesses anywhere. Contact forms, galleries, SEO basics and ongoing support. Request a custom quote.",
         name: "Professional Website Design",
         h1: "A professional website that makes it easy to choose you",
         intro: "We design and build fast, mobile-friendly websites that explain what you do, show your work and make it simple for customers to call, message or book.",
@@ -328,21 +335,21 @@ export default {
           title: "What's included and what's quoted separately",
           items: [
             { t: "Configured per project", d: "Greeting, business information, common answers, languages and message-taking are set up as part of the project." },
-            { t: "Depends on your systems", d: "Live calendar booking, call transfers, CRM updates and text notifications depend on your phone provider and software, and are confirmed in your proposal." },
+            { t: "Depends on your systems and country", d: "Live calendar booking, call transfers, CRM updates and text notifications depend on your phone provider, your software and what is available in your country. They are confirmed in your proposal." },
           ],
         },
         demo: { text: "Listen to a sample receptionist call and read the transcript.", href: "/ai-solutions/#voice-demo" },
         faq: [
           { q: "Will callers know they're speaking with an AI?", a: "We recommend the greeting makes it clear, and callers can ask to reach a person. You decide how calls are escalated." },
-          { q: "Can I keep my current phone number?", a: "In many cases, yes — it depends on your phone provider. We'll confirm the setup during your consultation." },
+          { q: "Can I keep my current phone number?", a: "In many cases, yes — it depends on your phone provider and your country. We'll confirm the setup during your consultation." },
           { q: "Is it available 24/7?", a: "It can be configured to answer after hours, during busy times or all the time. Availability is set in your proposal." },
         ],
         ctaLabel: "Get My Receptionist Quote",
       },
       "ai-chatbots": {
         icon: "chat",
-        title: "AI Chatbots for Business Websites | Global Bot Solutions",
-        description: "A bilingual AI chat assistant for your website that answers FAQs, shares service information, collects inquiries and hands off to your team.",
+        title: "AI Chatbots & AI Customer Service | Global Bot Solutions",
+        description: "A bilingual AI chatbot for your website: AI customer service that answers FAQs, shares service information, collects inquiries and hands off to your team.",
         name: "AI Chatbots",
         h1: "A website assistant that answers questions while you work",
         intro: "We set up a chat assistant on your website, trained on your services, hours and policies. It answers common questions in English and Spanish and collects inquiries for your team.",
@@ -436,6 +443,7 @@ export default {
           { q: "Do customers need an app?", a: "No. Most modern iPhones and Android phones read NFC cards without an app. A QR code covers phones that don't." },
           { q: "Can you guarantee more 5-star reviews?", a: "No. The card makes leaving a review easier; what customers write is up to them." },
           { q: "Can the link be changed later?", a: "Depending on the card setup, the destination can be updated. We'll explain the options in your proposal." },
+          { q: "Can you send review cards to my country?", a: "Review cards are physical products, so international orders are reviewed case by case, depending on shipping availability and cost. Ask in your quote request and we'll confirm the options." },
         ],
         ctaLabel: "Get My Review Card Quote",
       },
@@ -474,8 +482,8 @@ export default {
       },
       "business-automation": {
         icon: "automation",
-        title: "Business Automation in New Jersey | Global Bot Solutions",
-        description: "Customer inquiry routing, appointment workflows, AI customer support and custom integrations that save small businesses time.",
+        title: "Business Process Automation with AI | Global Bot Solutions",
+        description: "Business process automation for small businesses: inquiry routing, appointment workflows, AI customer support and custom integrations, delivered online.",
         name: "Custom Business Automation",
         h1: "Automate the repetitive work around your customers",
         intro: "We connect your website, chat, booking and everyday admin tasks into simple workflows — so inquiries reach the right person and routine steps happen on their own.",
@@ -707,15 +715,21 @@ export default {
 
     // ===================== ABOUT =====================
     about: {
-      title: "About Global Bot Solutions | Websites & AI in NJ",
-      description: "Global Bot Solutions LLC builds professional websites and practical AI tools for small businesses, with full English and Spanish support.",
+      title: "About Us: Digital Solutions Worldwide | Global Bot Solutions",
+      description: "Global Bot Solutions LLC builds websites and practical AI tools for businesses worldwide, fully online, with English and Spanish support.",
       h1: "Technology built around small businesses",
       intro: "Global Bot Solutions LLC helps small businesses look professional online and respond to customers faster, with websites and practical AI tools — in English and Spanish.",
       storyTitle: "What we do",
       story: [
         "Small business owners are busy serving customers. Many don't have the time to keep up with websites, missed calls and the same questions asked again and again.",
         "We build professional websites and set up AI chat, voice and booking tools that take some of that work off your plate. We start from how your business actually runs and recommend only what helps.",
-        "Because many of the communities we serve speak both English and Spanish, bilingual support is part of how we work — not an add-on.",
+        "Because many businesses serve customers in both English and Spanish, bilingual support is part of how we work — not an add-on.",
+      ],
+      links: [
+        { icon: "layers", label: "Explore our services", href: "/services/" },
+        { icon: "chat", label: "Try the AI demos", href: "/ai-solutions/" },
+        { icon: "sliders", label: "Solutions by industry", href: "/industries/" },
+        { icon: "support", label: "Frequently asked questions", href: "/faq/" },
       ],
       valuesTitle: "How we work",
       values: [
@@ -725,7 +739,7 @@ export default {
         { icon: "support", t: "Here after launch", d: "Support and improvements continue as agreed in your plan." },
       ],
       areaTitle: "Who we serve",
-      areaText: "We work with small and local businesses in New Jersey and can support businesses elsewhere in the U.S. remotely.",
+      areaText: "We work with businesses of all sizes around the world. Our services are delivered fully online, in English and Spanish, and we schedule calls across time zones. Some features depend on the providers available in your country; we confirm them in your proposal.",
       slogan: "Built Around Your Business. Not the Other Way Around.",
     },
 
@@ -763,30 +777,31 @@ export default {
           t: "Websites",
           items: [
             { q: "How long does a website take?", a: "It depends on the size of the site and how quickly content is ready. Your proposal includes a timeline." },
-            { q: "Can you update my existing website instead of starting over?", a: "Yes. We review your current site and recommend whether to improve it or rebuild it." },
-            { q: "Will I be able to make changes myself?", a: "That depends on how the site is built. We'll discuss your preference, and maintenance plans are available if you'd rather we handle updates." },
+            { q: "Can you update my existing website instead of starting over?", a: "Yes. We review your current site and recommend whether to improve it or rebuild it.", link: { href: "/services/website-design/", label: "About website design" } },
+            { q: "Will I be able to make changes myself?", a: "That depends on how the site is built. We'll discuss your preference, and maintenance plans are available if you'd rather we handle updates.", link: { href: "/services/website-maintenance/", label: "About website maintenance" } },
           ],
         },
         {
           t: "AI tools",
           items: [
-            { q: "What's the difference between a chatbot and an AI receptionist?", a: "A chatbot answers questions in a chat window on your website. An AI receptionist answers phone calls. Many businesses use both." },
+            { q: "What's the difference between a chatbot and an AI receptionist?", a: "A chatbot answers questions in a chat window on your website. An AI receptionist answers phone calls. Many businesses use both.", link: { href: "/services/ai-receptionist/", label: "How AI receptionists work" } },
             { q: "Can the AI tools speak Spanish?", a: "Yes. Chat and voice assistants can be configured for English and Spanish." },
             { q: "Will AI replace my staff?", a: "No. It handles common, repetitive questions so your team can focus on customers. Important or complex requests are passed to a person." },
-            { q: "Are the demos on your website live AI?", a: "No. The demos are scripted simulations that show how the tools work. They're not connected to a live AI system, phone line or calendar." },
+            { q: "Are the demos on your website live AI?", a: "No. The demos are scripted simulations that show how the tools work. They're not connected to a live AI system, phone line or calendar.", link: { href: "/ai-solutions/", label: "Try the demos" } },
           ],
         },
         {
           t: "Booking and reviews",
           items: [
-            { q: "Can online booking connect to my calendar?", a: "Calendar integration depends on the tool you use. We'll confirm options during your consultation." },
-            { q: "Do NFC review cards guarantee reviews?", a: "No. They make leaving a review easier. Reviews are always the customer's choice." },
+            { q: "Can online booking connect to my calendar?", a: "Calendar integration depends on the tool you use. We'll confirm options during your consultation.", link: { href: "/services/online-booking/", label: "About online booking" } },
+            { q: "Do NFC review cards guarantee reviews?", a: "No. They make leaving a review easier. Reviews are always the customer's choice.", link: { href: "/services/nfc-review-cards/", label: "About NFC review cards" } },
           ],
         },
         {
           t: "Working together",
           items: [
-            { q: "Which areas do you serve?", a: "We work with businesses in New Jersey and can support businesses elsewhere in the U.S. remotely." },
+            { q: "Where do you work with clients?", a: "Anywhere. We work fully online with businesses worldwide, in English or Spanish. Some features, like phone numbers for an AI receptionist or calendar integrations, depend on what's available in your country, and we confirm them in your proposal." },
+            { q: "What time zone do you work in?", a: "We work with clients across time zones. When you request a consultation, let us know the days and times that suit you and we'll schedule around your time zone." },
             { q: "Can we work in Spanish?", a: "Sí. We can communicate in English or Spanish throughout your project." },
             { q: "What happens after launch?", a: "Support depends on your plan. Ongoing maintenance and improvements are available." },
           ],
@@ -803,8 +818,9 @@ export default {
       updated: "Last updated",
       sections: [
         { t: "Who we are", p: ["This website is operated by Global Bot Solutions LLC (“we,” “us”). You can contact us at the email address and phone number listed at the end of this policy."] },
-        { t: "Information we collect", p: ["When you submit our contact form, we collect the information you provide: your name, business name, email, and optionally your phone number, website, industry, services of interest, project description, preferred language and project scope.", "When a visit includes campaign information in the link (such as utm_source), we may store it with your request to understand how you found us.", "Our hosting provider may process technical information such as IP address and browser type to deliver the website and protect it from abuse."] },
+        { t: "Information we collect", p: ["When you submit our contact form, we collect the information you provide: your name, business name, email, and optionally your phone number, country, preferred contact method, website, industry, services of interest, project description, preferred language and project scope. If you ask for a consultation call, the form also sends your time zone as set on your device, so we can suggest suitable call times.", "When a visit includes campaign information in the link (such as utm_source), we may store it with your request to understand how you found us.", "Our hosting provider may process technical information such as IP address and browser type to deliver the website and protect it from abuse."] },
         { t: "How we use information", p: ["We use the information you submit to respond to your request, prepare proposals and communicate with you about our services. We do not sell your personal information.", "Quote requests are delivered to our business inbox through our email delivery provider, Resend. Our website is hosted by Cloudflare, which also runs the website chat assistant."] },
+        { t: "Where information is processed", p: ["We work with businesses in many countries. Cloudflare (website hosting and the chat assistant) and Resend (email delivery) may process information in the United States and in other countries where they or their providers operate. By submitting a request, you understand that your information may be processed outside your country."] },
         { t: "Security and spam protection", p: ["We use security measures such as encrypted connections, spam protection and rate limiting. If enabled, Cloudflare Turnstile may process information about your browser to check that submissions come from a person."] },
         { t: "Demos", p: ["The demos on this website run in your browser. Information typed into the demos is not sent to us or stored."] },
         { t: "Chat assistant", p: ["Messages you type into the website chat assistant are sent to an AI model run by our hosting provider, Cloudflare, to generate a reply. We do not store chat conversations. Please don't share sensitive personal information in the chat."] },

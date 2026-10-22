@@ -7,7 +7,7 @@ const good = () => ({
   name: "Maria Lopez",
   business: "Lopez Auto Care",
   email: "maria@example.com",
-  phone: "(732) 555-0100",
+  phone: "+1 555 010 0100",
   industry: "auto-repair",
   services: ["website-design", "ai-receptionist"],
   website: "https://example.com",
@@ -179,4 +179,51 @@ test("HTML email escapes user input", () => {
   const mail = composeEmail(data);
   assert.doesNotMatch(mail.html, /<script>/);
   assert.match(mail.html, /&lt;script&gt;/);
+});
+
+// ---------------- Optional international fields
+test("international fields are optional: omitted fields still deliver", async () => {
+  const m = mockFetch(async () => new Response("{}", { status: 200 }));
+  try {
+    const res = await onRequestPost({ request: req(good()), env: resendEnv });
+    assert.equal(res.status, 200);
+    const sent = JSON.parse(m.calls[0].init.body);
+    assert.match(sent.text, /Country: —/);
+    assert.match(sent.text, /Preferred contact method: —/);
+    assert.doesNotMatch(sent.text, /time zone/i);
+  } finally { m.restore(); }
+});
+
+test("international fields are included in the lead email when given", async () => {
+  const m = mockFetch(async () => new Response("{}", { status: 200 }));
+  try {
+    const body = { ...good(), country: "México", contact_method: "phone", timezone: "America/Mexico_City", consultation: true, phone: "+52 55 1234 5678" };
+    const res = await onRequestPost({ request: req(body), env: resendEnv });
+    assert.equal(res.status, 200);
+    const sent = JSON.parse(m.calls[0].init.body);
+    assert.match(sent.text, /Country: México/);
+    assert.match(sent.text, /Preferred contact method: Phone call/);
+    assert.match(sent.text, /Visitor's time zone: America\/Mexico_City/);
+    assert.match(sent.text, /Phone: \+52 55 1234 5678/);
+  } finally { m.restore(); }
+});
+
+test("invalid optional values are dropped, never block the request", async () => {
+  const m = mockFetch(async () => new Response("{}", { status: 200 }));
+  try {
+    const body = { ...good(), country: "<script>x</script>", contact_method: "whatsapp", timezone: "../../etc/passwd", consultation: true };
+    const res = await onRequestPost({ request: req(body), env: resendEnv });
+    assert.equal(res.status, 200);
+    const sent = JSON.parse(m.calls[0].init.body);
+    assert.match(sent.text, /Country: —/);
+    assert.match(sent.text, /Preferred contact method: —/);
+    assert.doesNotMatch(sent.text, /<script|whatsapp|passwd/i);
+  } finally { m.restore(); }
+});
+
+test("time zone is only kept when a consultation call is requested", () => {
+  assert.equal(validate({ ...good(), consultation: false, timezone: "Europe/Madrid" }).data.timezone, "");
+  assert.equal(validate({ ...good(), consultation: true, timezone: "Europe/Madrid" }).data.timezone, "Europe/Madrid");
+  assert.equal(validate({ ...good(), country: "Côte d'Ivoire" }).data.country, "Côte d'Ivoire");
+  assert.equal(validate({ ...good(), country: "Spain\r\nBcc: x@y.z" }).data.country, "");
 });

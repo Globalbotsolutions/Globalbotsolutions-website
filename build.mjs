@@ -16,6 +16,9 @@ import { portfolio } from "./src/data/portfolio.mjs";
 const OUT = "dist";
 const LANGS = { en, es };
 const TODAY = new Date().toISOString().slice(0, 10);
+// Fixed dates, bumped by hand when content really changes (a build alone is not a content change).
+const CONTENT_UPDATED = site.contentUpdated || TODAY;
+const LEGAL_UPDATED = site.legalUpdated || TODAY;
 
 // ---------------------------------------------------------------- helpers
 const esc = (s = "") =>
@@ -73,7 +76,7 @@ const orgSchema = (t) => ({
   logo: site.domain + "/img/logo-512.png",
   email: site.email,
   telephone: site.phoneHref,
-  areaServed: { "@type": "State", name: "New Jersey" },
+  areaServed: "Worldwide",
   knowsLanguage: ["en", "es"],
   contactPoint: [{ "@type": "ContactPoint", contactType: "sales", email: site.email, telephone: site.phoneHref, availableLanguage: ["English", "Spanish"] }],
   ...(site.social.length ? { sameAs: site.social } : {}),
@@ -307,10 +310,11 @@ function ctaBand(t, lang, { title, text, primary, primaryHref, secondary = true 
 </section>`;
 }
 
-const faqList = (items) => `<div class="faq-list">${map(items, (f) => `
+// An item may carry an optional internal link: { href: "/services/…/", label: "…" }.
+const faqList = (items, lang) => `<div class="faq-list">${map(items, (f) => `
   <details class="faq-item">
     <summary><span>${esc(f.q)}</span><span class="faq-marker" aria-hidden="true"></span></summary>
-    <div class="faq-answer"><p>${esc(f.a)}</p></div>
+    <div class="faq-answer"><p>${esc(f.a)}</p>${f.link && lang ? `<p class="faq-more"><a href="${u(lang, f.link.href)}">${esc(f.link.label)} →</a></p>` : ""}</div>
   </details>`)}</div>`;
 
 const faqSchema = (items) => ({
@@ -411,6 +415,7 @@ render.home = (t, lang) => {
 <section class="home-hero">
   <div class="container home-hero-grid">
     <div class="home-hero-copy">
+      ${P.hero.eyebrow ? `<p class="hero-eyebrow">${icon("globe")}<span>${esc(P.hero.eyebrow)}</span></p>` : ""}
       <h1>${esc(P.hero.h1)}</h1>
       <p class="lead">${esc(P.hero.text)}</p>
       <div class="actions">
@@ -549,7 +554,7 @@ render.service = (t, lang, page) => {
     url: abs(lang, page.path),
     inLanguage: lang,
     provider: { "@id": site.domain + "/#organization" },
-    areaServed: { "@type": "State", name: "New Jersey" },
+    areaServed: "Worldwide",
     availableLanguage: ["English", "Spanish"],
   };
   const body = `
@@ -614,7 +619,7 @@ ${S.status ? `<section class="section section-tight">
 <section class="section">
   <div class="container faq-wrap">
     <h2 class="section-title">${esc(t.common.faqTitle)}</h2>
-    ${faqList(S.faq)}
+    ${faqList(S.faq, lang)}
   </div>
 </section>
 
@@ -918,7 +923,9 @@ ${pageHero({ crumbs: bc.html, h1: A.h1, intro: A.intro })}
     <div>
       <h2 class="section-title">${esc(A.storyTitle)}</h2>
     </div>
-    <div class="prose">${map(A.story, (p) => `<p>${esc(p)}</p>`)}</div>
+    <div class="prose">${map(A.story, (p) => `<p>${esc(p)}</p>`)}
+      ${A.links ? `<ul class="related">${map(A.links, (l) => `<li><a href="${u(lang, l.href)}">${icon(l.icon)}<span>${esc(l.label)}</span></a></li>`)}</ul>` : ""}
+    </div>
   </div>
 </section>
 <section class="section section-alt">
@@ -958,6 +965,7 @@ render.contact = (t, lang) => {
     errorCaptcha: F.errorCaptcha,
     sending: F.sending,
     submit: F.submit,
+    tzNote: F.tzNote,
     turnstile: !!site.turnstileSiteKey,
   };
   const body = `
@@ -986,8 +994,19 @@ ${pageHero({ crumbs: bc.html, h1: C.h1, intro: C.intro })}
           </div>
           <div class="field">
             <label for="f-phone">${esc(F.phone)} ${opt}</label>
-            <input id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" aria-describedby="f-phone-error">
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="${esc(F.phonePlaceholder)}" aria-describedby="f-phone-error">
             ${err("f-phone")}
+          </div>
+          <div class="field">
+            <label for="f-country">${esc(F.country)} ${opt}</label>
+            <input id="f-country" name="country" type="text" autocomplete="country-name" maxlength="60">
+          </div>
+          <div class="field">
+            <label for="f-contact-method">${esc(F.contactMethod)} ${opt}</label>
+            <select id="f-contact-method" name="contact_method">
+              <option value="">${esc(F.contactMethodPlaceholder)}</option>
+              ${map(Object.entries(F.contactMethods), ([k, v]) => `<option value="${k}">${esc(v)}</option>`)}
+            </select>
           </div>
           <div class="field">
             <label for="f-industry">${esc(F.industry)} ${req}</label>
@@ -1031,6 +1050,8 @@ ${pageHero({ crumbs: bc.html, h1: C.h1, intro: C.intro })}
           </div>
           <div class="field field-full">
             <label class="check check-solo"><input type="checkbox" name="consultation" value="yes" data-consult><span>${esc(F.consultation)}</span></label>
+            <p class="hint" data-tz-note hidden></p>
+            <input type="hidden" name="timezone" value="" data-timezone>
           </div>
           <div class="hp" aria-hidden="true">
             <label for="f-company-url">Leave this field empty</label>
@@ -1090,7 +1111,7 @@ ${pageHero({ crumbs: bc.html, h1: F.h1, intro: F.intro, actions: btn(contactHref
   <div class="container faq-page">${map(F.groups, (g) => `
     <div class="faq-group">
       <h2 class="h3">${esc(g.t)}</h2>
-      ${faqList(g.items)}
+      ${faqList(g.items, lang)}
     </div>`)}
   </div>
 </section>
@@ -1108,7 +1129,7 @@ ${pageHero({ crumbs: bc.html, h1: L.h1, intro: "" })}
 <section class="section section-tight">
   <div class="container legal">
     <p class="review-banner" role="note">${icon("shield")}<span>${esc(L.review)}</span></p>
-    <p class="small muted">${esc(L.updated)}: ${TODAY}</p>
+    <p class="small muted">${esc(L.updated)}: ${LEGAL_UPDATED}</p>
     ${map(L.sections, (s) => `<h2 class="h4">${esc(s.t)}</h2>${map(s.p, (p) => `<p${p.startsWith("[") ? ' class="owner-todo"' : ""}>${esc(p)}</p>`)}`)}
     <h2 class="h4">${esc(L.contactTitle)}</h2>
     <p>${esc(site.legalName)}<br><a href="mailto:${site.email}">${esc(site.email)}</a><br><a href="tel:${site.phoneHref}">${esc(site.phoneDisplay)}</a></p>
@@ -1165,7 +1186,7 @@ const sm = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${pages.flatMap((p) => ["en", "es"].map((l) => `  <url>
     <loc>${abs(l, p.path)}</loc>
-    <lastmod>${TODAY}</lastmod>
+    <lastmod>${CONTENT_UPDATED}</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="${abs("en", p.path)}"/>
     <xhtml:link rel="alternate" hreflang="es" href="${abs("es", p.path)}"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="${abs("en", p.path)}"/>

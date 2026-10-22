@@ -35,6 +35,21 @@
   } catch (e) {}
   form.querySelector("[data-started]").value = String(Date.now());
 
+  // ---- time zone: shown and sent ONLY when the visitor asks for a consultation call
+  var consult = form.querySelector("[data-consult]");
+  var tzNote = form.querySelector("[data-tz-note]");
+  var tzInput = form.querySelector("[data-timezone]");
+  var tz = "";
+  try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+  if (!/^[A-Za-z_]+(\/[A-Za-z0-9_+\-]+){0,2}$/.test(tz)) tz = "";
+  function syncTz() {
+    var on = !!(consult && consult.checked && tz && T.tzNote);
+    if (tzNote) { tzNote.textContent = on ? T.tzNote.replace("{tz}", tz.replace(/_/g, " ")) : ""; tzNote.hidden = !on; }
+    if (tzInput) tzInput.value = on ? tz : "";
+  }
+  if (consult) consult.addEventListener("change", syncTz);
+  syncTz();
+
   // ---- validation (mirrors the server rules in functions/api/contact.js)
   var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   var PHONE = /^[0-9+().\-\s]{7,30}$/;
@@ -117,6 +132,9 @@
       business: val("business"),
       email: val("email"),
       phone: val("phone"),
+      country: val("country"),
+      contact_method: val("contact_method"),
+      timezone: val("timezone"),
       industry: val("industry"),
       services: services(),
       website: val("website"),

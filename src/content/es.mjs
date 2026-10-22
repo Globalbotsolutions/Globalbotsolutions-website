@@ -38,7 +38,7 @@ export default {
   },
 
   footer: {
-    blurb: "Páginas web profesionales, recepcionistas con IA, chatbots y automatización para pequeños negocios, en inglés y español.",
+    blurb: "Páginas web profesionales, recepcionistas con IA, chatbots y automatización para negocios en todo el mundo, en inglés y español.",
     servicesHead: "Servicios",
     companyHead: "Empresa",
     contactHead: "Contacto",
@@ -59,7 +59,7 @@ export default {
     typing: "El asistente está escribiendo",
     quote: "Solicita Tu Cotización",
     disclaimer: "Las respuestas de la IA pueden contener errores. Para detalles exactos, solicita una cotización o contáctanos.",
-    offline: "El chat no está disponible en este momento. Usa el formulario de cotización, escríbenos a info@globalbotsolutions.com o llama al (307) 217-8616.",
+    offline: "El chat no está disponible en este momento. Usa el formulario de cotización, escríbenos a info@globalbotsolutions.com o llama al +1 (307) 217-8616.",
     busy: "Demasiados mensajes en poco tiempo. Espera un minuto e inténtalo de nuevo.",
     tooLong: "Escribe mensajes de menos de 500 caracteres.",
     suggestions: ["¿Qué servicios ofrecen?", "¿Hacen páginas web en español?", "¿Cómo funciona la recepcionista con IA?"],
@@ -96,6 +96,12 @@ export default {
     business: "Nombre del negocio",
     email: "Correo electrónico",
     phone: "Teléfono",
+    phonePlaceholder: "Incluye el código de país, p. ej., +52",
+    country: "País",
+    contactMethod: "Medio de contacto preferido",
+    contactMethodPlaceholder: "Elige uno (opcional)",
+    contactMethods: { email: "Correo electrónico", phone: "Llamada telefónica", either: "Cualquiera de los dos" },
+    tzNote: "Incluiremos tu zona horaria ({tz}) para proponerte horarios de llamada que te funcionen.",
     optional: "opcional",
     industry: "Industria",
     industryPlaceholder: "Elige tu industria",
@@ -164,12 +170,13 @@ export default {
 
   pages: {
     home: {
-      title: "Páginas Web e IA para Negocios en NJ | Global Bot Solutions",
-      description: "Páginas web profesionales, recepcionistas con IA, chatbots y reservas en línea para negocios en Nueva Jersey. En inglés y español. Cotiza gratis.",
+      title: "Páginas Web e IA para Negocios | Global Bot Solutions",
+      description: "Páginas web, chatbots y recepcionistas con IA, reservas en línea y automatización para negocios de cualquier país. En español e inglés. Cotiza gratis.",
       hero: {
+        eyebrow: "Soluciones digitales inteligentes para negocios en todo el mundo",
         h1: "Tu Negocio. Más Inteligente, Más Rápido y Automatizado.",
-        text: "Páginas web profesionales, recepcionistas inteligentes con IA y soluciones de automatización diseñadas según tus objetivos, tus clientes y tu presupuesto.",
-        points: ["Inglés y español", "Hecho a la medida de tu negocio", "Propuestas personalizadas"],
+        text: "Páginas web profesionales, atención al cliente con IA, recepcionistas virtuales inteligentes, reservas automatizadas y automatización de procesos, pensadas para ayudar a tu negocio a crecer, esté donde esté.",
+        points: ["Atendemos negocios en todo el mundo", "Inglés y español", "100 % digital y a la medida"],
         visual: {
           site: "Rivera Family Dental",
           siteTag: "Atención amable para toda la familia",
@@ -189,11 +196,11 @@ export default {
         title: "Tecnología Moderna. Soluciones Prácticas. Valor Real para Tu Negocio.",
         items: [
           { icon: "sliders", t: "Soluciones personalizadas", d: "Cada proyecto parte de tus objetivos, no de una plantilla." },
-          { icon: "globe", t: "Atención en inglés y español", d: "Sitios, chat y llamadas bilingües para clientes bilingües." },
+          { icon: "globe", t: "Atención en inglés y español", d: "Sitios, chat y llamadas bilingües para clientes de cualquier mercado." },
           { icon: "website", t: "Desarrollo web profesional", d: "Sitios rápidos, accesibles y pensados primero para el celular." },
           { icon: "chat", t: "Atención al cliente con IA", d: "Responde preguntas comunes a cualquier hora." },
           { icon: "layers", t: "Configuraciones flexibles", d: "Empieza con un servicio y agrega más cuando tenga sentido." },
-          { icon: "support", t: "Soporte técnico continuo", d: "Ayuda con actualizaciones y cambios, según tu plan." },
+          { icon: "support", t: "Servicio 100 % digital", d: "Planeamos, creamos y damos soporte a tu proyecto en línea, estés donde estés, según tu plan." },
         ],
       },
       services: {
@@ -237,7 +244,7 @@ export default {
         ],
       },
       industries: {
-        title: "Pensado para negocios locales de servicios",
+        title: "Pensado para negocios de servicios",
         text: "Restaurantes, barberías, consultorios dentales, talleres mecánicos y más: cada uno con clientes y preguntas diferentes.",
       },
       final: {
@@ -263,8 +270,8 @@ export default {
     servicePages: {
       "website-design": {
         icon: "website",
-        title: "Diseño Web para Negocios en NJ | Global Bot Solutions",
-        description: "Páginas web modernas, adaptadas a celulares y bilingües para pequeños negocios. Formularios, galerías, SEO básico y soporte. Solicita tu cotización.",
+        title: "Diseño de Páginas Web para Negocios | Global Bot Solutions",
+        description: "Páginas web modernas, bilingües y adaptadas a celulares para negocios de cualquier país. Formularios, galerías, SEO básico y soporte. Pide tu cotización.",
         name: "Diseño de Páginas Web Profesionales",
         h1: "Una página web profesional que facilita que te elijan",
         intro: "Diseñamos y creamos sitios rápidos y adaptados a celulares que explican lo que haces, muestran tu trabajo y facilitan que te llamen, te escriban o reserven.",
@@ -293,7 +300,7 @@ export default {
       },
       "ai-receptionist": {
         icon: "voice",
-        title: "Recepcionista con IA para Negocios | Global Bot Solutions",
+        title: "Recepcionista Virtual con IA | Global Bot Solutions",
         description: "Una recepcionista de voz con IA que puede contestar llamadas comunes, dar información, tomar solicitudes de cita y canalizar llamadas, en inglés y español.",
         name: "Recepcionistas de Voz con IA",
         h1: "Contesta más llamadas sin contratar más personal",
@@ -317,21 +324,21 @@ export default {
           title: "Qué se incluye y qué se cotiza por separado",
           items: [
             { t: "Se configura en cada proyecto", d: "El saludo, la información del negocio, las respuestas comunes, los idiomas y la toma de mensajes se configuran como parte del proyecto." },
-            { t: "Depende de tus sistemas", d: "Las reservas en calendario en tiempo real, las transferencias de llamadas, las actualizaciones de CRM y los avisos por mensaje de texto dependen de tu proveedor telefónico y tu software, y se confirman en tu propuesta." },
+            { t: "Depende de tus sistemas y tu país", d: "Las reservas en calendario en tiempo real, las transferencias de llamadas, las actualizaciones de CRM y los avisos por mensaje de texto dependen de tu proveedor telefónico, tu software y lo que esté disponible en tu país. Se confirman en tu propuesta." },
           ],
         },
         demo: { text: "Escucha una llamada de ejemplo y lee la transcripción.", href: "/ai-solutions/#voice-demo" },
         faq: [
           { q: "¿Las personas sabrán que hablan con una IA?", a: "Recomendamos que el saludo lo indique, y quien llama puede pedir hablar con una persona. Tú decides cómo se transfieren las llamadas." },
-          { q: "¿Puedo conservar mi número actual?", a: "En muchos casos, sí; depende de tu proveedor telefónico. Lo confirmamos en tu consulta." },
+          { q: "¿Puedo conservar mi número actual?", a: "En muchos casos, sí; depende de tu proveedor telefónico y de tu país. Lo confirmamos en tu consulta." },
           { q: "¿Funciona las 24 horas?", a: "Se puede configurar para fuera de horario, horas de mucho trabajo o todo el tiempo. La disponibilidad se define en tu propuesta." },
         ],
         ctaLabel: "Cotiza Mi Recepcionista",
       },
       "ai-chatbots": {
         icon: "chat",
-        title: "Chatbot con IA para Sitios Web | Global Bot Solutions",
-        description: "Un asistente de chat bilingüe con IA para tu sitio web que responde preguntas frecuentes, informa sobre tus servicios, recibe consultas y pasa a tu equipo.",
+        title: "Chatbots con IA y Atención al Cliente | Global Bot Solutions",
+        description: "Chatbot bilingüe con IA para tu sitio web: atención al cliente que responde preguntas, informa sobre tus servicios, recibe consultas y pasa a tu equipo.",
         name: "Chatbots con IA",
         h1: "Un asistente en tu sitio web que responde mientras tú trabajas",
         intro: "Instalamos en tu sitio web un asistente de chat entrenado con tus servicios, horarios y políticas. Responde preguntas comunes en inglés y español y recibe consultas para tu equipo.",
@@ -416,6 +423,7 @@ export default {
           { q: "¿Los clientes necesitan una aplicación?", a: "No. La mayoría de los iPhone y Android modernos leen tarjetas NFC sin aplicaciones. Un código QR cubre los celulares que no lo hacen." },
           { q: "¿Pueden garantizar más reseñas de 5 estrellas?", a: "No. La tarjeta facilita dejar una reseña; lo que el cliente escriba depende de él." },
           { q: "¿Se puede cambiar el enlace después?", a: "Según el tipo de tarjeta, el destino se puede actualizar. Te explicamos las opciones en tu propuesta." },
+          { q: "¿Pueden enviar tarjetas a mi país?", a: "Las tarjetas son un producto físico, así que los pedidos internacionales se evalúan caso por caso, según la disponibilidad y el costo del envío. Menciónalo en tu solicitud de cotización y te confirmamos las opciones." },
         ],
         ctaLabel: "Cotiza Mis Tarjetas NFC",
       },
@@ -451,8 +459,8 @@ export default {
       },
       "business-automation": {
         icon: "automation",
-        title: "Automatización de Negocios en NJ | Global Bot Solutions",
-        description: "Canalización de consultas, flujos de citas, atención al cliente con IA e integraciones personalizadas que ahorran tiempo a los pequeños negocios.",
+        title: "Automatización de Procesos con IA | Global Bot Solutions",
+        description: "Automatización de procesos para negocios: canalización de consultas, flujos de citas, atención al cliente con IA e integraciones, todo en línea.",
         name: "Automatización Personalizada",
         h1: "Automatiza el trabajo repetitivo alrededor de tus clientes",
         intro: "Conectamos tu sitio web, chat, reservas y tareas administrativas en flujos sencillos, para que cada consulta llegue a la persona indicada y los pasos de rutina ocurran solos.",
@@ -674,15 +682,21 @@ export default {
     },
 
     about: {
-      title: "Sobre Global Bot Solutions | Páginas Web e IA en NJ",
-      description: "Global Bot Solutions LLC crea páginas web profesionales y herramientas prácticas de IA para pequeños negocios, con atención completa en inglés y español.",
+      title: "Sobre Nosotros: Soluciones Digitales | Global Bot Solutions",
+      description: "Global Bot Solutions LLC crea páginas web y herramientas prácticas de IA para negocios de todo el mundo, 100 % en línea y en inglés y español.",
       h1: "Tecnología pensada para pequeños negocios",
       intro: "Global Bot Solutions LLC ayuda a pequeños negocios a verse profesionales en línea y a responder más rápido a sus clientes, con páginas web y herramientas prácticas de IA, en inglés y español.",
       storyTitle: "Lo que hacemos",
       story: [
         "Los dueños de pequeños negocios están ocupados atendiendo clientes. Muchos no tienen tiempo para ocuparse del sitio web, las llamadas perdidas y las mismas preguntas una y otra vez.",
         "Creamos páginas web profesionales y configuramos herramientas de chat, voz y reservas con IA que te quitan parte de ese trabajo. Partimos de cómo funciona realmente tu negocio y solo recomendamos lo que ayuda.",
-        "Como muchas de las comunidades que atendemos hablan inglés y español, la atención bilingüe es parte de cómo trabajamos, no un extra.",
+        "Como muchos negocios atienden a clientes en inglés y en español, la atención bilingüe es parte de cómo trabajamos, no un extra.",
+      ],
+      links: [
+        { icon: "layers", label: "Conoce nuestros servicios", href: "/services/" },
+        { icon: "chat", label: "Prueba las demos de IA", href: "/ai-solutions/" },
+        { icon: "sliders", label: "Soluciones por industria", href: "/industries/" },
+        { icon: "support", label: "Preguntas frecuentes", href: "/faq/" },
       ],
       valuesTitle: "Cómo trabajamos",
       values: [
@@ -692,7 +706,7 @@ export default {
         { icon: "support", t: "Contigo después del lanzamiento", d: "El soporte y las mejoras continúan según tu plan." },
       ],
       areaTitle: "A quién atendemos",
-      areaText: "Trabajamos con pequeños negocios locales en Nueva Jersey y podemos atender de forma remota a negocios en otras partes de EE. UU.",
+      areaText: "Trabajamos con negocios de todos los tamaños en todo el mundo. Nuestros servicios son 100 % en línea, en inglés y español, y agendamos llamadas en distintas zonas horarias. Algunas funciones dependen de los proveedores disponibles en tu país; las confirmamos en tu propuesta.",
       slogan: "Hecho a la Medida de Tu Negocio. No al Revés.",
     },
 
@@ -728,30 +742,31 @@ export default {
           t: "Páginas web",
           items: [
             { q: "¿Cuánto tarda una página web?", a: "Depende del tamaño del sitio y de qué tan rápido esté listo el contenido. Tu propuesta incluye los plazos." },
-            { q: "¿Pueden mejorar mi sitio actual en lugar de hacer uno nuevo?", a: "Sí. Revisamos tu sitio actual y te recomendamos si conviene mejorarlo o rehacerlo." },
-            { q: "¿Podré hacer cambios yo mismo?", a: "Depende de cómo se construya el sitio. Lo platicamos según tu preferencia, y hay planes de mantenimiento si prefieres que nosotros hagamos los cambios." },
+            { q: "¿Pueden mejorar mi sitio actual en lugar de hacer uno nuevo?", a: "Sí. Revisamos tu sitio actual y te recomendamos si conviene mejorarlo o rehacerlo.", link: { href: "/services/website-design/", label: "Sobre el diseño web" } },
+            { q: "¿Podré hacer cambios yo mismo?", a: "Depende de cómo se construya el sitio. Lo platicamos según tu preferencia, y hay planes de mantenimiento si prefieres que nosotros hagamos los cambios.", link: { href: "/services/website-maintenance/", label: "Sobre el mantenimiento web" } },
           ],
         },
         {
           t: "Herramientas de IA",
           items: [
-            { q: "¿Qué diferencia hay entre un chatbot y una recepcionista con IA?", a: "Un chatbot responde preguntas en una ventana de chat en tu sitio web. Una recepcionista con IA contesta llamadas telefónicas. Muchos negocios usan ambos." },
+            { q: "¿Qué diferencia hay entre un chatbot y una recepcionista con IA?", a: "Un chatbot responde preguntas en una ventana de chat en tu sitio web. Una recepcionista con IA contesta llamadas telefónicas. Muchos negocios usan ambos.", link: { href: "/services/ai-receptionist/", label: "Cómo funciona la recepcionista con IA" } },
             { q: "¿Las herramientas de IA hablan español?", a: "Sí. Los asistentes de chat y de voz se pueden configurar en inglés y español." },
             { q: "¿La IA reemplazará a mi personal?", a: "No. Atiende las preguntas comunes y repetitivas para que tu equipo se enfoque en los clientes. Las solicitudes importantes o complejas pasan a una persona." },
-            { q: "¿Las demostraciones del sitio son IA real?", a: "No. Las demostraciones son simulaciones guionizadas que muestran cómo funcionan las herramientas. No están conectadas a un sistema de IA real, a una línea telefónica ni a un calendario." },
+            { q: "¿Las demostraciones del sitio son IA real?", a: "No. Las demostraciones son simulaciones guionizadas que muestran cómo funcionan las herramientas. No están conectadas a un sistema de IA real, a una línea telefónica ni a un calendario.", link: { href: "/ai-solutions/", label: "Prueba las demos" } },
           ],
         },
         {
           t: "Reservas y reseñas",
           items: [
-            { q: "¿Las reservas en línea se conectan con mi calendario?", a: "La integración depende de la herramienta que uses. Confirmamos las opciones en tu consulta." },
-            { q: "¿Las tarjetas NFC garantizan reseñas?", a: "No. Facilitan dejar una reseña. Las reseñas siempre son decisión del cliente." },
+            { q: "¿Las reservas en línea se conectan con mi calendario?", a: "La integración depende de la herramienta que uses. Confirmamos las opciones en tu consulta.", link: { href: "/services/online-booking/", label: "Sobre las reservas en línea" } },
+            { q: "¿Las tarjetas NFC garantizan reseñas?", a: "No. Facilitan dejar una reseña. Las reseñas siempre son decisión del cliente.", link: { href: "/services/nfc-review-cards/", label: "Sobre las tarjetas NFC" } },
           ],
         },
         {
           t: "Cómo trabajamos",
           items: [
-            { q: "¿En qué zonas trabajan?", a: "Trabajamos con negocios en Nueva Jersey y podemos atender de forma remota a negocios en otras partes de EE. UU." },
+            { q: "¿Dónde trabajan con clientes?", a: "En cualquier parte. Trabajamos 100 % en línea con negocios de todo el mundo, en español o inglés. Algunas funciones, como los números telefónicos para una recepcionista con IA o las integraciones de calendario, dependen de lo que esté disponible en tu país, y las confirmamos en tu propuesta." },
+            { q: "¿En qué zona horaria trabajan?", a: "Trabajamos con clientes en distintas zonas horarias. Cuando pidas una consulta, cuéntanos qué días y horarios te convienen y la agendamos según tu zona horaria." },
             { q: "¿Podemos trabajar en español?", a: "Sí. Podemos comunicarnos en inglés o en español durante todo tu proyecto." },
             { q: "¿Qué pasa después del lanzamiento?", a: "El soporte depende de tu plan. Hay mantenimiento y mejoras continuas disponibles." },
           ],
@@ -767,8 +782,9 @@ export default {
       updated: "Última actualización",
       sections: [
         { t: "Quiénes somos", p: ["Este sitio web es operado por Global Bot Solutions LLC (“nosotros”). Puedes contactarnos al correo y teléfono que aparecen al final de esta política."] },
-        { t: "Información que recopilamos", p: ["Cuando envías nuestro formulario de contacto, recopilamos la información que nos das: tu nombre, el nombre del negocio, tu correo y, de forma opcional, tu teléfono, sitio web, industria, servicios de interés, descripción del proyecto, idioma preferido y alcance del proyecto.", "Si el enlace de tu visita incluye información de campaña (por ejemplo, utm_source), podemos guardarla junto con tu solicitud para saber cómo nos encontraste.", "Nuestro proveedor de alojamiento puede procesar información técnica, como la dirección IP y el tipo de navegador, para mostrar el sitio y protegerlo contra abusos."] },
+        { t: "Información que recopilamos", p: ["Cuando envías nuestro formulario de contacto, recopilamos la información que nos das: tu nombre, el nombre del negocio, tu correo y, de forma opcional, tu teléfono, país, medio de contacto preferido, sitio web, industria, servicios de interés, descripción del proyecto, idioma preferido y alcance del proyecto. Si pides una llamada de consulta, el formulario también envía la zona horaria configurada en tu dispositivo para proponerte horarios adecuados.", "Si el enlace de tu visita incluye información de campaña (por ejemplo, utm_source), podemos guardarla junto con tu solicitud para saber cómo nos encontraste.", "Nuestro proveedor de alojamiento puede procesar información técnica, como la dirección IP y el tipo de navegador, para mostrar el sitio y protegerlo contra abusos."] },
         { t: "Cómo usamos la información", p: ["Usamos la información que envías para responder a tu solicitud, preparar propuestas y comunicarnos contigo sobre nuestros servicios. No vendemos tu información personal.", "Las solicitudes de cotización llegan a nuestro correo a través de nuestro proveedor de envío de correo, Resend. Nuestro sitio está alojado en Cloudflare, que también opera el asistente de chat del sitio."] },
+        { t: "Dónde se procesa la información", p: ["Trabajamos con negocios de muchos países. Cloudflare (alojamiento del sitio y asistente de chat) y Resend (envío de correos) pueden procesar información en Estados Unidos y en otros países donde ellos o sus proveedores operan. Al enviar una solicitud, entiendes que tu información puede procesarse fuera de tu país."] },
         { t: "Seguridad y protección contra spam", p: ["Usamos medidas de seguridad como conexiones cifradas, protección contra spam y límites de envío. Si está activado, Cloudflare Turnstile puede procesar información de tu navegador para verificar que el envío lo hace una persona."] },
         { t: "Demostraciones", p: ["Las demostraciones de este sitio funcionan en tu navegador. Lo que escribas en ellas no se nos envía ni se guarda."] },
         { t: "Asistente de chat", p: ["Los mensajes que escribes en el asistente de chat del sitio se envían a un modelo de IA operado por nuestro proveedor de alojamiento, Cloudflare, para generar una respuesta. No guardamos las conversaciones del chat. Por favor, no compartas información personal sensible en el chat."] },
