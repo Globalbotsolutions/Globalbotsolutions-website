@@ -88,6 +88,23 @@ is reference only.
 6. **Go live:** merge the branch into `main`. Cloudflare deploys it to globalbotsolutions.com.
    DNS does not change.
 
+## Sending quote emails from your own domain (Resend), without touching Google Workspace
+
+Use a **subdomain** such as `updates.globalbotsolutions.com`, so nothing on the root domain changes.
+
+1. Resend → Domains → Add domain → `updates.globalbotsolutions.com` (pick the region closest to you, e.g. us-east-1).
+   **Do not enable "Receiving"** for it.
+2. Resend shows 3 records. In Cloudflare → DNS → Records, add them exactly as shown, all set to **DNS only** (grey cloud):
+   - `MX`  name `send.updates`  → `feedback-smtp.<region>.amazonses.com` (priority 10)
+   - `TXT` name `send.updates`  → `v=spf1 include:amazonses.com ~all`
+   - `TXT` name `resend._domainkey.updates` → the DKIM key Resend gives you
+3. Wait for Resend to show **Verified** (minutes, up to 72 h).
+4. In Cloudflare Pages → Settings → Variables (Production and Preview) change
+   `LEAD_FROM` to `Global Bot Solutions Website <quotes@updates.globalbotsolutions.com>`, then redeploy.
+
+These records live only under `updates.` subdomains. The root `MX smtp.google.com`, the root SPF
+`v=spf1 include:_spf.google.com ~all` and `google._domainkey` stay exactly as they are, so Gmail keeps working.
+
 ## Rollback
 
 - **Fastest:** Cloudflare dashboard → the project → Deployments → pick the last deployment of the
