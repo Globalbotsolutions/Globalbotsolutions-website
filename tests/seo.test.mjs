@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { onRequest, PAGES_DEV_HOST } from "../functions/_middleware.js";
+import { onRequest, PAGES_DEV_HOST, GSC_FILE } from "../functions/_middleware.js";
 
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 const pages = walk("dist").filter((f) => f.endsWith("index.html"));
@@ -40,4 +40,10 @@ test("preview, branch and real-domain requests pass through untouched", async ()
     assert.equal(r.status, 200, u);
     assert.equal(await r.text(), "asset");
   }
+});
+
+test("Search Console verification file is served directly (no redirect)", async () => {
+  const r = await onRequest(ctx("https://globalbotsolutions.com/" + GSC_FILE));
+  assert.equal(r.status, 200);
+  assert.equal(await r.text(), "google-site-verification: google9e51c4fde646c8a8.html");
 });
