@@ -169,3 +169,10 @@ test("demo pages are clearly labeled as simulated", () => {
     assert.match(t, /not connected to a live AI|no están conectadas a un sistema de IA real/i);
   }
 });
+
+test("no unfinished placeholders or internal notes on any page", () => {
+  for (const f of pageFiles) {
+    const t = textOf(read(f));
+    assert.doesNotMatch(t, /\[(Owner|owner|Por completar|Por confirmar)[^\]]*\]|TODO|lorem ipsum|before publication|antes de publicarse/i, f);
+  }
+});
