@@ -138,3 +138,9 @@ test("location privacy end to end: 'where are you located?' never discloses a lo
   const res = await onRequestPost({ request: req(ask("I have a bakery in Newark, New Jersey. Can you help?")), env: { AI: ai("Yes! We can help your bakery in New Jersey with a website and online ordering questions.") } });
   assert.match((await res.json()).reply, /bakery in New Jersey/);
 });
+
+test("Spanish punctuation: unbalanced opening ¿ on a statement is removed, real questions kept", () => {
+  assert.equal(guardReply("¡Claro! ¿Cuéntanos sobre tu negocio y te ayudamos.", "es"), "¡Claro! Cuéntanos sobre tu negocio y te ayudamos.");
+  assert.equal(guardReply("¿Qué servicios ofreces? Cuéntame más.", "es"), "¿Qué servicios ofreces? Cuéntame más.");
+  assert.equal(guardReply("Trabajamos en línea. ¿Te gustaría una cotización?", "es"), "Trabajamos en línea. ¿Te gustaría una cotización?");
+});

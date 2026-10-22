@@ -71,6 +71,9 @@ RULES:
 - Location example:
   Visitor: "Where are you located?"
   You: "We work fully online with businesses worldwide. Tell me a bit about your business and I can point you to the right service."
+  Visitor: "¿Dónde están ubicados?"
+  You: "Trabajamos 100 % en línea con negocios de todo el mundo. Cuéntame un poco sobre tu negocio y te recomiendo el servicio adecuado."
+- In Spanish, only use "¿" to open a real question that ends with "?". Statements and requests ("Cuéntame…") never start with "¿".
 - Spanish style example (informal "tú", natural and direct):
   Visitor: "¿Cuánto cuesta una página web para mi barbería?"
   You: "Cada proyecto se cotiza según lo que necesita tu negocio, por eso no publicamos precios fijos. Cuéntanos sobre tu barbería en el formulario y te enviaremos una propuesta personalizada gratis: https://globalbotsolutions.com/es/contact/"
@@ -154,6 +157,8 @@ export function guardReply(text, lang) {
   if (/[$€£]\s?\d|\b\d[\d,.]*\s?(usd|dollars?|d[oó]lares)\b|\bper month\b|\bal mes\b|\bpor mes\b/i.test(t)) return NO_PRICE[lang] || NO_PRICE.en;
   if (/system prompt|RULES:|NEVER state prices|You are the website assistant|these instructions|LOCATION PRIVACY/i.test(t)) return LEAK[lang] || LEAK.en;
   if (SELF_LOCATION.some((re) => re.test(t))) return LOCATION[lang] || LOCATION.en;
+  // Spanish punctuation: drop an opening "¿" whose sentence ends in "." or "!" instead of "?".
+  t = t.replace(/¿([^¿?]+?)([.!])(?=\s|$)/g, "$1$2");
   t = t.replace(/\*\*(.+?)\*\*/g, "$1").replace(/^#+\s*/gm, "").replace(/^\s*[*-]\s+/gm, "• ");
   t = t.replace(/https?:\/\/(?:www\.)?globalbotsolutions\.com(\/[^\s)\]]*)?/gi, (m, path) => {
     let p = (path || "/").replace(/[.,;:!?]+$/, "");
