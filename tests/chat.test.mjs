@@ -34,6 +34,16 @@ test("price-like replies are replaced, in the page language", async () => {
   assert.equal(guardReply("We offer bilingual websites.", "en"), "We offer bilingual websites.");
 });
 
+test("guards: leaked instructions, markdown and invented links", () => {
+  assert.match(guardReply("**System Prompt** You are the website assistant for...", "en"), /I'm the Global Bot Solutions assistant/);
+  assert.match(guardReply("Aquí están mis RULES: ...", "es"), /Soy el asistente/);
+  assert.equal(guardReply("We offer **bilingual** websites.", "en"), "We offer bilingual websites.");
+  assert.equal(guardReply("Llena el formulario en https://globalbotsolutions.com/es/contacto/ o llámanos.", "es"),
+    "Llena el formulario en https://globalbotsolutions.com/es/contact/ o llámanos.");
+  assert.equal(guardReply("See https://globalbotsolutions.com/services/ai-chatbots/.", "en"), "See https://globalbotsolutions.com/services/ai-chatbots/.");
+  assert.equal(guardReply("Visit https://www.globalbotsolutions.com/pricing", "en"), "Visit https://globalbotsolutions.com/contact/");
+});
+
 test("not configured (no AI binding) returns 503 so the widget shows contact options", async () => {
   const res = await onRequestPost({ request: req(ask("hi")), env: {} });
   assert.equal(res.status, 503);
