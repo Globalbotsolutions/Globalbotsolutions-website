@@ -1,0 +1,13 @@
+{
+  "name": "globalbotsolutions-website",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Global Bot Solutions LLC website — static bilingual site + Cloudflare Pages Function for quote requests",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node build.mjs && node --test tests/*.test.mjs",
+    "preview": "node build.mjs && node scripts/dev-server.mjs"
+  },
+  "engines": { "node": ">=18" }
+}
