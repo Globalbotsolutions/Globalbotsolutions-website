@@ -8,6 +8,7 @@ import http from "node:http";
 import { readFileSync, existsSync, statSync } from "node:fs";
 import { join, extname, normalize } from "node:path";
 import { onRequestPost, onRequest } from "../functions/api/contact.js";
+import * as chat from "../functions/api/chat.js";
 
 const ROOT = "dist";
 const PORT = Number(process.env.PORT || 8788);
@@ -36,6 +37,15 @@ function headersFor(path) {
 }
 
 const env = { ...process.env };
+// DEV_FAKE_AI=1 → canned chat replies (the real assistant needs Cloudflare Workers AI)
+if (process.env.DEV_FAKE_AI) {
+  env.AI = { run: async (_m, input) => {
+    const q = input.messages.at(-1).content;
+    const es = /[¿¡ñáéíóú]|qué|hacen|ofrecen|cuánto/i.test(q);
+    if (/price|cost|how much|cu[aá]nto|precio/i.test(q)) return { response: es ? "Eso cuesta $500." : "That costs $500." }; // exercises the price guard
+    return { response: es ? "Hacemos páginas web, recepcionistas con IA, chatbots y reservas en línea, en inglés y español. ¿Quieres una cotización? https://globalbotsolutions.com/es/contact/" : "We build websites, AI receptionists, chatbots and online booking, in English and Spanish. Want a quote? https://globalbotsolutions.com/contact/" };
+  } };
+}
 if (process.env.DEV_FAKE_EMAIL) {
   env.RESEND_API_KEY = "dev";
   env.LEAD_FROM = "Dev <dev@localhost>";
@@ -54,6 +64,16 @@ if (process.env.DEV_FAKE_EMAIL) {
 http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://localhost:${PORT}`);
   const path = decodeURIComponent(url.pathname);
+
+  if (path === "/api/chat") {
+    const chunks = [];
+    for await (const c of req) chunks.push(c);
+    const request = new Request(url, { method: req.method, headers: { ...req.headers, "CF-Connecting-IP": req.socket.remoteAddress }, body: ["GET", "HEAD"].includes(req.method) ? undefined : Buffer.concat(chunks) });
+    const r = req.method === "POST" ? await chat.onRequestPost({ request, env }) : await chat.onRequest({ request, env });
+    res.writeHead(r.status, Object.fromEntries(r.headers));
+    res.end(Buffer.from(await r.arrayBuffer()));
+    return;
+  }
 
   if (path === "/api/contact") {
     const chunks = [];

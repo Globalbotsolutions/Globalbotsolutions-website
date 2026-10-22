@@ -182,6 +182,38 @@ function footer(t, lang) {
 </footer>`;
 }
 
+function chatWidget(t, lang) {
+  if (!site.chatEnabled) return "";
+  const c = t.chat;
+  return `
+<div class="gbs-chat" data-chat-widget data-lang="${lang}" data-quote="${esc(contactHref(lang))}">
+  <button class="chat-fab" type="button" aria-expanded="false" aria-controls="gbs-chat-panel" data-chat-open>
+    ${icon("chat")}<span>${esc(c.open)}</span>
+  </button>
+  <section class="chat-panel" id="gbs-chat-panel" role="dialog" aria-modal="false" aria-labelledby="gbs-chat-title" hidden>
+    <header class="chat-panel-head">
+      <img src="/img/logo.svg" alt="" width="34" height="34">
+      <div><h2 id="gbs-chat-title">${esc(c.title)}</h2><p>${esc(c.subtitle)}</p></div>
+      <button type="button" class="chat-x" data-chat-close aria-label="${esc(c.close)}">${icon("close")}</button>
+    </header>
+    <div class="chat-panel-log" data-chat-panel-log role="log" aria-live="polite">
+      <p class="bubble bot">${esc(c.greeting)}</p>
+    </div>
+    <div class="chat-panel-suggest" data-chat-suggest>${map(c.suggestions, (q) => `<button type="button">${esc(q)}</button>`)}</div>
+    <form class="chat-panel-form" data-chat-form>
+      <label class="sr-only" for="gbs-chat-input">${esc(c.placeholder)}</label>
+      <textarea id="gbs-chat-input" rows="1" maxlength="500" placeholder="${esc(c.placeholder)}" data-chat-input></textarea>
+      <button type="submit" class="btn btn-primary btn-sm" data-chat-send>${esc(c.send)}</button>
+    </form>
+    <footer class="chat-panel-foot">
+      <p>${esc(c.disclaimer)}</p>
+      <a class="link-arrow" href="${esc(contactHref(lang))}">${esc(c.quote)}${icon("arrow")}</a>
+    </footer>
+    <template data-chat-strings>${esc(JSON.stringify({ typing: c.typing, offline: c.offline, busy: c.busy, tooLong: c.tooLong }))}</template>
+  </section>
+</div>`;
+}
+
 function layout(t, lang, { path, title, description, body, schema = [], scripts = [], bodyClass = "", noindex = false, data = null }) {
   const canonical = abs(lang, path);
   const og = `${site.domain}/img/og-${lang}.png`;
@@ -215,7 +247,7 @@ ${noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" hr
 <meta property="og:locale" content="${t.locale}">
 <meta property="og:locale:alternate" content="${lang === "en" ? es.locale : en.locale}">
 <meta name="twitter:card" content="summary_large_image">
-${map(allSchema, (s) => `<script type="application/ld+json">${json(s)}</script>\n`)}${data ? `<script type="application/json" id="page-data">${json(data)}</script>\n` : ""}<script src="/js/main.js?v=${V}" defer></script>
+${map(allSchema, (s) => `<script type="application/ld+json">${json(s)}</script>\n`)}${data ? `<script type="application/json" id="page-data">${json(data)}</script>\n` : ""}<script src="/js/main.js?v=${V}" defer></script>${site.chatEnabled ? `\n<script src="/js/chat.js?v=${V}" defer></script>` : ""}
 ${map(scripts, (s) => `<script src="${s}${s.startsWith("/") ? `?v=${V}` : ""}" defer></script>\n`)}${site.cfAnalyticsToken ? `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${esc(site.cfAnalyticsToken)}"}'></script>` : ""}
 </head>
 <body class="${bodyClass}">
@@ -225,6 +257,7 @@ ${header(t, lang, path)}
 ${body}
 </main>
 ${footer(t, lang)}
+${chatWidget(t, lang)}
 </body>
 </html>
 `;

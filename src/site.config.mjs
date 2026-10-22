@@ -20,6 +20,9 @@ export const site = {
   // When you add it here, also set TURNSTILE_SECRET_KEY in Cloudflare Pages.
   turnstileSiteKey: "",
 
+  // Website AI chat assistant (needs a Workers AI binding named "AI" on the Pages project).
+  chatEnabled: true,
+
   // Optional Cloudflare Web Analytics token (cookie-free). Empty = no analytics.
   cfAnalyticsToken: "",
 

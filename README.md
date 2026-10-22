@@ -61,23 +61,31 @@ is reference only.
    - Build command: `npm run build`
    - Build output directory: `dist`
    - Root directory: `/` (unchanged)
-2. **Email delivery for the quote form** (Settings → Variables and Secrets / Bindings). Pick one:
-   - **Resend** (free tier available): secret `RESEND_API_KEY`, variable `LEAD_FROM`
-     (e.g. `Global Bot Solutions Website <quotes@globalbotsolutions.com>`; the domain must be verified in Resend).
-   - **Cloudflare Email Routing** (free): enable Email Routing on the domain, verify
-     `info@globalbotsolutions.com` as a destination, add a **send_email** binding named `LEAD_EMAIL`,
-     and variable `LEAD_FROM` with an address on your domain.
-   - Optional: `LEAD_TO` (defaults to info@globalbotsolutions.com).
-   Until one is configured, the form tells visitors it couldn't send and shows your email and phone.
+2. **Email delivery for the quote form** (Settings → Variables and Secrets), using **Resend**:
+   - Create a free Resend account **with the address that should receive leads** (info@globalbotsolutions.com).
+   - Create an API key and add it as the encrypted secret `RESEND_API_KEY` (Production and Preview).
+   - Add the variable `LEAD_FROM` = `Global Bot Solutions Website <onboarding@resend.dev>` and
+     `LEAD_TO` = the same address you signed up with. With the `resend.dev` sender, Resend only delivers to
+     the account's own address, which is exactly what lead notifications need, and **no DNS changes** are required.
+   - Later, to send from `@globalbotsolutions.com`, verify the domain in Resend (adds records on a subdomain;
+     Google Workspace mail records stay untouched) and change `LEAD_FROM`.
+   - **Do not enable Cloudflare Email Routing** on this domain: it requires replacing the Google Workspace MX
+     records and would stop your company email. (The code still supports a `LEAD_EMAIL` send_email binding for
+     other setups; don't use it here.)
+   Until delivery is configured, the form tells visitors it couldn't send and shows your email and phone.
    It never shows a false "sent".
-3. **Spam protection (recommended):** create a free Turnstile widget for the domain, put the
+3. **AI chat assistant:** Settings → Bindings → Add → **Workers AI**, variable name `AI`
+   (Production and Preview). No API key; usage counts against the account's free daily Workers AI allocation
+   (requests fail politely when it's used up; the widget then shows the contact options). Turn the widget off
+   with `chatEnabled: false` in `src/site.config.mjs`.
+4. **Spam protection (recommended):** create a free Turnstile widget for the domain, put the
    *site key* in `src/site.config.mjs → turnstileSiteKey`, and add the *secret key* as the encrypted
    secret `TURNSTILE_SECRET_KEY`. Optional KV bindings: `RATE_LIMIT` (durable rate limiting) and
    `LEADS` (private 90-day backup copy of each lead).
-4. **Preview first:** push the `feature/gbs-premium-redesign` branch. Cloudflare Pages builds a preview at
-   `https://feature-gbs-premium-redesign.<project>.pages.dev` (branch previews must be enabled). Check
+5. **Preview first:** push the `feature/gbs-premium-redesign` branch. Cloudflare Pages builds a preview at
+   `https://feature-gbs-premium-redesign.globalbotsolutions-website.pages.dev` (branch previews are enabled). Check
    the pages and send a test quote request.
-5. **Go live:** merge the branch into `main`. Cloudflare deploys it to globalbotsolutions.com.
+6. **Go live:** merge the branch into `main`. Cloudflare deploys it to globalbotsolutions.com.
    DNS does not change.
 
 ## Rollback
@@ -86,13 +94,14 @@ is reference only.
   old site → **Rollback to this deployment**. This is instant and doesn't touch Git.
 - **In Git:** revert the merge commit on `main`. The old site's files (`index.html`, `styles.css`,
   `script.js`) return to the root. Then set the build command back to empty and the output
-  directory back to `/` so the old files are served again.
+  directory back to `.` so the old files are served again.
+- The pre-redesign production deployment is `408f324e` (commit `7bbd4d9`, tag `backup/live-2026-10-21`).
 
 ## Owner decisions before launch
 
 - Review and approve the Privacy Policy and Terms (marked as drafts on the pages; items in
   brackets need your input or an attorney's).
-- Choose the email delivery option and add the secrets (step 2 above).
+- Create the Resend account and add the secret/variables (step 2) and the Workers AI binding (step 3).
 - Turnstile: yes/no (recommended).
 - Analytics: optional, cookie-free Cloudflare Web Analytics (`cfAnalyticsToken` in site config).
 - Portfolio: replace or add to the concept designs with real client work you have permission to show.

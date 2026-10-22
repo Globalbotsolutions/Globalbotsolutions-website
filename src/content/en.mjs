@@ -48,6 +48,23 @@ export default {
     ctaText: "Tell us about your business and we'll recommend the right mix.",
   },
 
+  chat: {
+    open: "Chat with us",
+    title: "Global Bot Solutions assistant",
+    subtitle: "AI assistant · English & Spanish",
+    close: "Close chat",
+    greeting: "Hi! I can answer questions about our websites, AI receptionists, chatbots, booking and automation. What does your business need?",
+    placeholder: "Type your question…",
+    send: "Send",
+    typing: "Assistant is typing",
+    quote: "Get My Custom Quote",
+    disclaimer: "AI answers can contain mistakes. For exact details, request a quote or contact us.",
+    offline: "The chat is unavailable right now. Please use the quote form, or email info@globalbotsolutions.com or call (307) 217-8616.",
+    busy: "Too many messages in a short time. Please wait a minute and try again.",
+    tooLong: "Please keep messages under 500 characters.",
+    suggestions: ["What services do you offer?", "Do you build websites in Spanish?", "How does the AI receptionist work?"],
+  },
+
   common: {
     breadcrumbHome: "Home",
     emailUs: "Email us",
@@ -790,6 +807,7 @@ export default {
         { t: "How we use information", p: ["We use the information you submit to respond to your request, prepare proposals and communicate with you about our services. We do not sell your personal information."] },
         { t: "Security and spam protection", p: ["We use security measures such as encrypted connections, spam protection and rate limiting. If enabled, Cloudflare Turnstile may process information about your browser to check that submissions come from a person."] },
         { t: "Demos", p: ["The demos on this website run in your browser. Information typed into the demos is not sent to us or stored."] },
+        { t: "Chat assistant", p: ["Messages you type into the website chat assistant are sent to an AI model run by our hosting provider, Cloudflare, to generate a reply. We do not store chat conversations. Please don't share sensitive personal information in the chat."] },
         { t: "Analytics and cookies", p: ["[Owner to confirm] This website does not use advertising cookies. If privacy-focused analytics are enabled, they are used only to understand overall website usage."] },
         { t: "Data retention", p: ["[Owner to confirm] We keep inquiry information only as long as needed to respond and to maintain business records."] },
         { t: "Your choices", p: ["You may ask us to access, correct or delete the information you submitted by contacting us."] },

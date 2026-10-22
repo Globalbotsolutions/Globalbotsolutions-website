@@ -48,6 +48,23 @@ export default {
     ctaText: "Cuéntanos sobre tu negocio y te recomendaremos la combinación ideal.",
   },
 
+  chat: {
+    open: "Chatea con nosotros",
+    title: "Asistente de Global Bot Solutions",
+    subtitle: "Asistente con IA · Inglés y español",
+    close: "Cerrar chat",
+    greeting: "¡Hola! Puedo responder preguntas sobre nuestras páginas web, recepcionistas con IA, chatbots, reservas y automatización. ¿Qué necesita tu negocio?",
+    placeholder: "Escribe tu pregunta…",
+    send: "Enviar",
+    typing: "El asistente está escribiendo",
+    quote: "Solicita Tu Cotización",
+    disclaimer: "Las respuestas de la IA pueden contener errores. Para detalles exactos, solicita una cotización o contáctanos.",
+    offline: "El chat no está disponible en este momento. Usa el formulario de cotización, escríbenos a info@globalbotsolutions.com o llama al (307) 217-8616.",
+    busy: "Demasiados mensajes en poco tiempo. Espera un minuto e inténtalo de nuevo.",
+    tooLong: "Escribe mensajes de menos de 500 caracteres.",
+    suggestions: ["¿Qué servicios ofrecen?", "¿Hacen páginas web en español?", "¿Cómo funciona la recepcionista con IA?"],
+  },
+
   common: {
     breadcrumbHome: "Inicio",
     emailUs: "Escríbenos",
@@ -754,6 +771,7 @@ export default {
         { t: "Cómo usamos la información", p: ["Usamos la información que envías para responder a tu solicitud, preparar propuestas y comunicarnos contigo sobre nuestros servicios. No vendemos tu información personal."] },
         { t: "Seguridad y protección contra spam", p: ["Usamos medidas de seguridad como conexiones cifradas, protección contra spam y límites de envío. Si está activado, Cloudflare Turnstile puede procesar información de tu navegador para verificar que el envío lo hace una persona."] },
         { t: "Demostraciones", p: ["Las demostraciones de este sitio funcionan en tu navegador. Lo que escribas en ellas no se nos envía ni se guarda."] },
+        { t: "Asistente de chat", p: ["Los mensajes que escribes en el asistente de chat del sitio se envían a un modelo de IA operado por nuestro proveedor de alojamiento, Cloudflare, para generar una respuesta. No guardamos las conversaciones del chat. Por favor, no compartas información personal sensible en el chat."] },
         { t: "Analítica y cookies", p: ["[Por confirmar por el dueño] Este sitio no usa cookies publicitarias. Si se activa una analítica respetuosa de la privacidad, se usa solo para entender el uso general del sitio."] },
         { t: "Conservación de datos", p: ["[Por confirmar por el dueño] Conservamos la información de las consultas solo el tiempo necesario para responder y mantener los registros del negocio."] },
         { t: "Tus opciones", p: ["Puedes pedirnos acceder, corregir o eliminar la información que enviaste contactándonos."] },

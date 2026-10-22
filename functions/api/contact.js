@@ -2,8 +2,8 @@
 //
 // Delivery (configure ONE in Cloudflare Pages → Settings → Variables / Bindings):
 //   A) Resend:   RESEND_API_KEY (secret), LEAD_FROM (e.g. "Website <quotes@globalbotsolutions.com>")
-//   B) Cloudflare Email Routing send_email binding named LEAD_EMAIL
-//      (destination must be a verified address in Email Routing), plus LEAD_FROM address on your domain.
+//   B) Cloudflare Email Routing send_email binding named LEAD_EMAIL. NOT for globalbotsolutions.com:
+//      Email Routing replaces the domain's MX records and would break Google Workspace mail.
 // Optional:
 //   LEAD_TO               recipient (default info@globalbotsolutions.com)
 //   TURNSTILE_SECRET_KEY  enables server-side Turnstile verification (secret)
