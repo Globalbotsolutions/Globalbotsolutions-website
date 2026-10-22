@@ -75,7 +75,7 @@ is reference only.
    Until delivery is configured, the form tells visitors it couldn't send and shows your email and phone.
    It never shows a false "sent".
 3. **AI chat assistant:** Settings → Bindings → Add → **Workers AI**, variable name `AI`
-   (Production and Preview). No API key; usage counts against the account's free daily Workers AI allocation
+   (Production and Preview). Model: llama-3.1-8b-instruct-fp8 with llama-3.2-3b-instruct as fallback. No API key; usage counts against the free daily Workers AI allocation (roughly 350 chat messages/day)
    (requests fail politely when it's used up; the widget then shows the contact options). Turn the widget off
    with `chatEnabled: false` in `src/site.config.mjs`.
 4. **Spam protection (recommended):** create a free Turnstile widget for the domain, put the

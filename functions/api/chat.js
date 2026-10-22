@@ -6,7 +6,9 @@
 // No API keys. Usage counts against the account's Workers AI daily allocation;
 // when it is exhausted the endpoint answers 503 and the widget shows contact options.
 
-export const MODEL = "@cf/meta/llama-3.1-8b-instruct";
+// Primary model + fallback (Cloudflare retires models over time; the fallback keeps chat working).
+export const MODELS = ["@cf/meta/llama-3.1-8b-instruct-fp8", "@cf/meta/llama-3.2-3b-instruct"];
+export const MODEL = MODELS[0];
 const MAX_TURNS = 10;          // messages kept from the conversation
 const MAX_CHARS = 500;         // per user message
 const RL_WINDOW_S = 600;       // 10 minutes
@@ -140,19 +142,23 @@ export async function onRequestPost({ request, env }) {
   if (await rateLimited(env, ip)) return json(429, { ok: false, error: "rate_limited" });
 
   const pageHint = lang === "es" ? "The visitor is on the Spanish version of the site." : "The visitor is on the English version of the site.";
-  try {
-    const out = await env.AI.run(MODEL, {
-      messages: [{ role: "system", content: KNOWLEDGE + "\n\n" + pageHint }, ...messages],
-      max_tokens: 320,
-      temperature: 0.3,
-    });
-    const reply = guardReply(out && (out.response ?? out.result?.response), lang);
-    if (!reply) return json(502, { ok: false, error: "empty" });
-    return json(200, { ok: true, reply });
-  } catch (e) {
-    console.error("chat model error:", e && e.message);
-    return json(503, { ok: false, error: "unavailable" });
+  const input = {
+    messages: [{ role: "system", content: KNOWLEDGE + "\n\n" + pageHint }, ...messages],
+    max_tokens: 320,
+    temperature: 0.3,
+  };
+  let lastErr = null;
+  for (const model of MODELS) {
+    try {
+      const out = await env.AI.run(model, input);
+      const reply = guardReply(out && (out.response ?? out.result?.response), lang);
+      if (reply) return json(200, { ok: true, reply });
+    } catch (e) {
+      lastErr = e;
+      console.error("chat model error (" + model + "):", e && e.message);
+    }
   }
+  return json(503, { ok: false, error: lastErr ? "unavailable" : "empty" });
 }
 
 export async function onRequest() {

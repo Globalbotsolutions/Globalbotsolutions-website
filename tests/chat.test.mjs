@@ -1,7 +1,7 @@
 // Tests for functions/api/chat.js
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { onRequestPost, onRequest, cleanMessages, guardReply, KNOWLEDGE, MODEL } from "../functions/api/chat.js";
+import { onRequestPost, onRequest, cleanMessages, guardReply, KNOWLEDGE, MODEL, MODELS } from "../functions/api/chat.js";
 
 let n = 0;
 const req = (body, { origin = "https://globalbotsolutions.com", ip } = {}) =>
@@ -69,6 +69,15 @@ test("rate limit: 20 messages per 10 minutes per IP", async () => {
   const statuses = [];
   for (let i = 0; i < 22; i++) statuses.push((await onRequestPost({ request: req(ask("hi"), { ip: "203.0.113.50" }), env: { AI: ai("ok") } })).status);
   assert.deepEqual(statuses.slice(18), [200, 200, 429, 429]);
+});
+
+test("falls back to the second model when the first fails", async () => {
+  const tried = [];
+  const env = { AI: { run: async (m) => { tried.push(m); if (m === MODELS[0]) throw new Error("5007: No such model"); return { response: "Fallback works." }; } } };
+  const res = await onRequestPost({ request: req(ask("hi")), env });
+  assert.equal(res.status, 200);
+  assert.deepEqual(tried, MODELS);
+  assert.equal((await res.json()).reply, "Fallback works.");
 });
 
 test("GET is refused", async () => {
