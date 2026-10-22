@@ -167,8 +167,8 @@ export default {
   pages: {
     // ===================== HOME =====================
     home: {
-      title: "Websites, AI Receptionists & Business Automation | Global Bot Solutions",
-      description: "Professional websites, AI voice receptionists, chatbots and online booking for small businesses in New Jersey and beyond. English and Spanish. Get a custom quote.",
+      title: "Websites & AI for NJ Small Businesses | Global Bot Solutions",
+      description: "Professional websites, AI receptionists, chatbots and online booking for New Jersey small businesses. English and Spanish. Get a free custom quote.",
       hero: {
         h1: "Your Business. Smarter, Faster, Automated.",
         text: "Professional websites, intelligent AI receptionists, and powerful business automation solutions designed around your goals, your customers, and your budget.",
@@ -251,7 +251,7 @@ export default {
 
     // ===================== SERVICES INDEX =====================
     services: {
-      title: "Services: Websites, AI Chatbots, Receptionists & Automation | Global Bot Solutions",
+      title: "Websites, AI Chatbots & Automation | Global Bot Solutions",
       description: "Website design, AI chatbots, AI voice receptionists, online booking, NFC review cards, maintenance and custom automation for small businesses.",
       h1: "Services that help your business look professional and respond faster",
       intro: "Each service works on its own or together with the others. Your proposal includes only the pieces your business needs.",
@@ -268,7 +268,7 @@ export default {
     servicePages: {
       "website-design": {
         icon: "website",
-        title: "Website Design for Small Businesses in New Jersey | Global Bot Solutions",
+        title: "Small Business Website Design in NJ | Global Bot Solutions",
         description: "Modern, mobile-friendly, bilingual websites for small businesses. Contact forms, galleries, SEO basics and ongoing support. Request a custom quote.",
         name: "Professional Website Design",
         h1: "A professional website that makes it easy to choose you",
@@ -301,7 +301,7 @@ export default {
       },
       "ai-receptionist": {
         icon: "voice",
-        title: "AI Voice Receptionist for Small Businesses | Global Bot Solutions",
+        title: "AI Receptionist for Small Businesses | Global Bot Solutions",
         description: "An AI voice receptionist that can answer common calls, share business information, take appointment requests and route calls — in English and Spanish.",
         name: "AI Voice Receptionists",
         h1: "Answer more calls without adding staff",
@@ -341,7 +341,7 @@ export default {
       },
       "ai-chatbots": {
         icon: "chat",
-        title: "AI Chatbot for Small Business Websites | Global Bot Solutions",
+        title: "AI Chatbots for Business Websites | Global Bot Solutions",
         description: "A bilingual AI chat assistant for your website that answers FAQs, shares service information, collects inquiries and hands off to your team.",
         name: "AI Chatbots",
         h1: "A website assistant that answers questions while you work",
@@ -374,7 +374,7 @@ export default {
       },
       "online-booking": {
         icon: "calendar",
-        title: "Online Booking & Appointment Scheduling Automation | Global Bot Solutions",
+        title: "Online Booking for Small Businesses | Global Bot Solutions",
         description: "Let customers choose a service and request or book appointments online, with confirmations and calendar integration options.",
         name: "Automated Online Booking",
         h1: "Let customers book without picking up the phone",
@@ -407,7 +407,7 @@ export default {
       },
       "nfc-review-cards": {
         icon: "nfc",
-        title: "NFC Google Review Cards for Small Businesses | Global Bot Solutions",
+        title: "NFC Google Review Cards | Global Bot Solutions",
         description: "Branded tap-to-review NFC cards that open your Google review page on a customer's phone. Easy for customers, easy for your team.",
         name: "NFC Review Cards",
         h1: "Make leaving a review as easy as a tap",
@@ -441,7 +441,7 @@ export default {
       },
       "website-maintenance": {
         icon: "maintenance",
-        title: "Website Maintenance Services for Small Businesses | Global Bot Solutions",
+        title: "Website Maintenance Services | Global Bot Solutions",
         description: "Content updates, technical care, monitoring and improvements to keep your small business website current and working.",
         name: "Website Maintenance",
         h1: "Keep your website current without thinking about it",
@@ -474,7 +474,7 @@ export default {
       },
       "business-automation": {
         icon: "automation",
-        title: "Business Automation & Customer Service Automation in New Jersey | Global Bot Solutions",
+        title: "Business Automation in New Jersey | Global Bot Solutions",
         description: "Customer inquiry routing, appointment workflows, AI customer support and custom integrations that save small businesses time.",
         name: "Custom Business Automation",
         h1: "Automate the repetitive work around your customers",
@@ -509,7 +509,7 @@ export default {
 
     // ===================== AI SOLUTIONS =====================
     ai: {
-      title: "AI Chatbot, Voice Receptionist & Booking Demos | Global Bot Solutions",
+      title: "AI Chatbot & Receptionist Demos | Global Bot Solutions",
       description: "Try interactive demos of AI chatbots, an AI voice receptionist call, online booking and NFC review cards — in English and Spanish.",
       h1: "See what AI can do for your business",
       intro: "Explore scripted demos of the tools we set up for small businesses. Choose an industry, switch languages and try them yourself.",
@@ -643,7 +643,7 @@ export default {
     // ===================== INDUSTRIES =====================
     industries: {
       title: "Websites & AI Automation by Industry | Global Bot Solutions",
-      description: "Websites, chatbots, AI receptionists and booking for restaurants, barbershops, salons, dental offices, auto repair, transportation, laundromats, HVAC and home services.",
+      description: "Websites, chatbots, AI receptionists and booking for restaurants, salons, dental offices, auto repair, HVAC, transportation and home services.",
       h1: "Solutions shaped around your industry",
       intro: "Every type of business hears different questions and serves customers differently. Here's how our tools typically help in yours.",
       needsLabel: "What customers need",
@@ -665,7 +665,7 @@ export default {
 
     // ===================== PORTFOLIO =====================
     portfolio: {
-      title: "Portfolio: Website & AI Automation Concepts | Global Bot Solutions",
+      title: "Website & AI Concept Portfolio | Global Bot Solutions",
       description: "Concept designs showing the kinds of websites, chatbots and booking flows Global Bot Solutions builds for small businesses.",
       h1: "Our work",
       intro: "These concept projects show the style and features we build for small businesses. Client projects will be added here as they're approved for publishing.",
@@ -684,7 +684,7 @@ export default {
 
     // ===================== CUSTOM SOLUTIONS (replaces pricing) =====================
     custom: {
-      title: "Custom Solutions & Personalized Quotes | Global Bot Solutions",
+      title: "Custom Solutions & Free Quotes | Global Bot Solutions",
       description: "No one-size-fits-all packages. Get a personalized proposal for a website, AI automation or a complete business solution that fits your goals and budget.",
       h1: "Smart Solutions. Tailored to Your Business. Priced for Your Success.",
       intro: "Every business has different needs. We create practical, personalized solutions that fit your goals and your budget. No unnecessary features. No one-size-fits-all packages. Just the right technology for your business.",
@@ -707,7 +707,7 @@ export default {
 
     // ===================== ABOUT =====================
     about: {
-      title: "About Global Bot Solutions | Websites & AI for Small Businesses",
+      title: "About Global Bot Solutions | Websites & AI in NJ",
       description: "Global Bot Solutions LLC builds professional websites and practical AI tools for small businesses, with full English and Spanish support.",
       h1: "Technology built around small businesses",
       intro: "Global Bot Solutions LLC helps small businesses look professional online and respond to customers faster, with websites and practical AI tools — in English and Spanish.",
