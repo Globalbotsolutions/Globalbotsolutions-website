@@ -1,3 +1,5 @@
+# NOTE: kept as an example only. A file named wrangler.toml with pages_build_output_dir would make
+# Cloudflare Pages ignore the dashboard settings for bindings and variables. Rename only if you want that.
 # Cloudflare Pages project configuration.
 # Build command: npm run build      Build output directory: dist
 name = "globalbotsolutions-website"

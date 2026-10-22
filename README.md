@@ -49,6 +49,10 @@ form backend's validation, spam traps, rate limiting, Turnstile and "success onl
 
 ## Deploying on Cloudflare Pages
 
+Project: `globalbotsolutions-website` (account e338b68f…), connected to this repo, production branch `main`,
+custom domain `globalbotsolutions.com`. Configuration lives in the Cloudflare dashboard; `wrangler.example.toml`
+is reference only.
+
 > **Important — do this before merging to `main`.** The current live site is served straight from the
 > repository root with no build step. This version is built into `dist/`. If `main` is updated without
 > changing the build settings, the live site will break.
